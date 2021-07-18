@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="235.0" prefWidth="444.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InvalidSerialNumberController">
+    <children>
+        <Button fx:id="okButton" layoutX="196.0" layoutY="172.0" mnemonicParsing="false" onAction="#okButtonPressed" text="OK" />
+        <Text layoutX="173.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID SERIAL NUMBER" />
+        <Text layoutX="133.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please re-enter the serial number." />
+        <Text layoutX="116.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your serial number must be 10 characters long." />
+        <Text layoutX="201.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AND" />
+        <Text layoutX="53.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your serial number must contain ONLY letters and numbers." />
+    </children>
+</AnchorPane>
