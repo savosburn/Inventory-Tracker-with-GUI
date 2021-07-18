@@ -1,0 +1,93 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class App {
+    start()
+    main()
+}
+
+class SceneManager {
+    scenes: Map<String, Scene>
+
+    load()
+    getScene(String): Scene
+}
+
+class InventoryTrackerController {
+    items: ItemModel
+    scenes: SceneManager
+    fileManager: FileManager
+
+    + InventoryTrackerController(ItemModel, SceneManger)
+
+    + addItemButtonCLicked(EventHandler)
+    + editItemButtonClicked((EventHandler)
+    + removeItemButtonClicked((EventHandler)
+    + saveInventoryAsCSVButtonClicked()
+    + saveInventoryAsHTMLButtonClicked()
+    + saveInventoryAsJSONButtonClicked()
+
+    addItem(String, String, BigDecimal)
+    editItem()
+    saveInventoryAsCSV(filename: String)
+    saveInventoryAsHTML(filename: String)
+    saveInventoryAsJSON(filename: String)
+}
+
+class AddItemWindowController {
+
+}
+
+class EditItemWindowController {
+
+}
+
+class RemoveItemWindowController {
+
+}
+
+class SearchItemWindowController {
+
+}
+
+class ItemModel {
+    - ObservableList<Item>
+}
+
+class Item {
+    - name: SimpleStringProperty
+    - serialNumber: SimpleStringProperty
+    - value: BigDecimal or SimpleDoubleProperty
+
+    + getName()
+    + setName()
+    + nameProperty()
+    + getSerialNumber()
+    + setSerialNumber()
+    + serialNumberProperty()
+    + getValue()
+    + setValue()
+}
+
+class FileManager {
+    saveAsCSV(filename: String, data: String)
+    saveAsHTML(filename: String, data: String)
+    saveAsJSON(filename: String, data: String)
+}
+
+openjfx.org.Application <|-- App
+App -- SceneManager
+SceneManager -- InventoryTrackerController
+SceneManager -- AddItemWindowController
+SceneManager -- EditItemWindowController
+SceneManager -- RemoveItemWindowController
+SceneManager -- SearchItemWindowController
+InventoryTrackerController o-- ItemModel
+AddItemWindowController o-- ItemModel
+EditItemWindowController o-- ItemModel
+RemoveItemWindowController o-- ItemModel
+SearchItemWindowController o-- ItemModel
+ItemModel *-- Item
+InventoryTrackerController o-- FileManager
+
+@enduml
