@@ -79,7 +79,7 @@ public class InventoryTrackerController {
     ObservableList<InventoryItem> inventoryItems = FXCollections.observableArrayList();
 
     @FXML
-    void addItemButtonClicked(ActionEvent event) {
+    void addItemButtonClicked() {
 
         String name = itemNameTextField.getText();
         String number = itemSerialNumberTextField.getText();
@@ -128,8 +128,6 @@ public class InventoryTrackerController {
         serialNumber.add(number);
 
         return serialNumber.size() != (allItems.size() + 1);
-
-        // True: Already in list
     }
 
     // Post-conditions: Determines if the item name is the correct length
