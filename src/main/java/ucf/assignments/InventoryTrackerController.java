@@ -248,10 +248,9 @@ public class InventoryTrackerController {
             // Catch if the stage could not be opened
             return "Scene switch unsuccessful.\n";
         }
-
-
     }
 
+    // Post-conditions: Switches scene to DuplicateItemController.fxml
     public String toDuplicateItemController() {
 
         try {
