@@ -76,6 +76,8 @@ public class InventoryTrackerController {
     @FXML
     private Button helpButton;
 
+    FileManager fileManager = new FileManager();
+
     FileChooser fileChooser = new FileChooser();
 
     // Declare objects
@@ -356,6 +358,8 @@ public class InventoryTrackerController {
     @FXML
     void loadButtonClicked(ActionEvent event) {
 
+
+
         // File chooser opens
         //Window stage = fileMenuButton.getScene().getWindow();
         Window stage = fileMenuButton.getScene().getWindow();
@@ -379,14 +383,10 @@ public class InventoryTrackerController {
 
             if (file.toString().contains(".txt")) {
 
-                ArrayList<String> inventoryStrings = loadFileStrings(file);
+                ArrayList<String> inventoryStrings = fileManager.loadFileStrings(file);;
 
-                inventoryItems = addToObservableList(inventoryStrings);
+                inventoryItems = fileManager.addToObservableList(inventoryStrings);
             }
-
-
-            //ArrayList<String> fileStrings = loadFileStrings(file);
-           // ObservableList<InventoryItem> loadedFile = addToObservableList(fileStrings);
 
             // Refresh and reset the table
             inventoryTrackerTable.refresh();
@@ -397,79 +397,6 @@ public class InventoryTrackerController {
             System.out.print("Could not load file.\n");
         }
     }
-
-    // Post-conditions: Parses the strings in the ArrayList and returns them as an ObservableList
-    public ObservableList<InventoryItem> addToObservableList(ArrayList<String> items) {
-        ObservableList<InventoryItem> tempList = FXCollections.observableArrayList();
-
-        // Iterate through every object string
-        for (String item : items) {
-
-            // Parse each string
-            String[] parsedString = parseStrings(item);
-
-            System.out.print(parsedString[0]);
-            System.out.print(parsedString[1]);
-            System.out.print(parsedString[2]);
-
-            // Add the string to the observablelist
-
-            InventoryItem inventory = new InventoryItem();
-            inventory.setItemName(parsedString[0]);
-            inventory.setItemSerialNumber(parsedString[1]);
-            inventory.setItemPrice(parsedString[2]);
-
-            tempList.add(inventory);
-
-
-            //tempList = setItems(inventoryItems, parsedString[0], parsedString[1], parsedString[3]);
-        }
-
-        return tempList;
-    }
-
-    // Post-conditions: Adds the strings to an ArrayList
-    public ArrayList<String> loadFileStrings(File file) {
-        // Create new ArrayList
-        ArrayList<String> items = new ArrayList<>();
-
-        try {
-            // Get the file and make it readable
-            File myFile = new File(file.getName());
-            Scanner scanner = new Scanner(myFile);
-
-            // Each line holds one object
-            while (scanner.hasNextLine()) {
-                items.add(scanner.nextLine());
-            }
-
-            return items;
-        } catch (FileNotFoundException e) {
-
-            // Check if the file was not found
-            System.out.print("File not found.\n");
-
-            return null;
-        }
-    }
-
-    public String[] parseStrings(String item) {
-        return item.split("\t");
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
