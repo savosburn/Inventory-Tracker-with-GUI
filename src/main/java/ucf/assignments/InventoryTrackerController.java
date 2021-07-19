@@ -423,7 +423,23 @@ public class InventoryTrackerController {
 
     @FXML
     void saveAsButtonClicked(ActionEvent event) {
+        Window stage = fileMenuButton.getScene().getWindow();
+        fileChooser.setTitle("Save Dialog");
+        fileChooser.setInitialFileName("New File");
 
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text File", "*.txt"),
+                new FileChooser.ExtensionFilter("JSON File", "*.json"),
+                new FileChooser.ExtensionFilter("TSV File", "*.tsv")
+        );
+
+        try {
+            File file = fileChooser.showSaveDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directory
+            // TODO SAVE THE FILE
+        } catch (Exception e) {
+            System.out.print("File could not be opened.\n");
+        }
     }
 
 
@@ -460,6 +476,7 @@ public class InventoryTrackerController {
         assert itemNameTextField != null : "fx:id=\"itemNameTextField\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert searchTextField != null : "fx:id=\"searchTextField\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert helpButton != null : "fx:id=\"helpButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
+
 
 
         // Set the initial directory of the file chooser to be the user's directory
