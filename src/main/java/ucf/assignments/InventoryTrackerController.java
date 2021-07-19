@@ -5,6 +5,9 @@
 
 package ucf.assignments;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.*;
@@ -19,7 +22,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class InventoryTrackerController {
 
@@ -54,6 +59,9 @@ public class InventoryTrackerController {
     private Button removeItemButton;
 
     @FXML
+    private MenuButton fileMenuButton;
+
+    @FXML
     private TextField itemPriceTextField;
 
     @FXML
@@ -67,6 +75,8 @@ public class InventoryTrackerController {
 
     @FXML
     private Button helpButton;
+
+    FileChooser fileChooser = new FileChooser();
 
     // Declare objects
     Set<String> serialNumbers = new HashSet<>();
@@ -271,8 +281,44 @@ public class InventoryTrackerController {
 
     }
 
+    // Post-conditions: Signifies that the file menu was opened
+    @FXML
+    public void fileMenuButtonClicked() {
+        // User clicks on file menu button
+        // Drop down appears
+        System.out.print("File Menu Opened.\n");
+    }
+
     @FXML
     void loadButtonClicked(ActionEvent event) {
+
+        // File chooser opens
+        //Window stage = fileMenuButton.getScene().getWindow();
+        Window stage = fileMenuButton.getScene().getWindow();
+        fileChooser.setTitle("Load To Do List");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text File", "*.txt"));
+
+        try {
+            // User chooses file
+            File file = fileChooser.showOpenDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directory for the next time it opens
+
+            // Clear ObservableList to load new ObservableList
+            inventoryItems.clear();
+
+            // Chosen file is loaded
+            // TODO UNCOMMENT THESSE NEXT TWO LINES
+            //ArrayList<String> fileStrings = loadFileStrings(file);
+           // ObservableList<InventoryItem> loadedFile = addToObservableList(fileStrings);
+
+            // Refresh and reset the table
+           // inventoryTrackerTable.refresh();
+            //inventoryTrackerTable.setItems(loadedFile);
+        } catch (Exception e) {
+
+            // Check if file could be loaded
+            System.out.print("Could not load file.\n");
+        }
 
     }
 
@@ -339,6 +385,7 @@ public class InventoryTrackerController {
         assert serialNumberColumn != null : "fx:id=\"serialNumberColumn\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert priceColumn != null : "fx:id=\"priceColumn\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert addItemButton != null : "fx:id=\"addItemButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
+        assert fileMenuButton != null : "fx:id=\"fileMenuButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert saveAsButton != null : "fx:id=\"saveAsButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert loadButton != null : "fx:id=\"loadButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert removeItemButton != null : "fx:id=\"removeItemButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
@@ -347,6 +394,10 @@ public class InventoryTrackerController {
         assert itemNameTextField != null : "fx:id=\"itemNameTextField\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert searchTextField != null : "fx:id=\"searchTextField\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert helpButton != null : "fx:id=\"helpButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
+
+
+        // Set the initial directory of the file chooser to be the user's directory
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 
         // Set the items in the inventory tracker
         inventoryTrackerTable.setItems(inventoryItems);
