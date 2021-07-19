@@ -367,7 +367,6 @@ public class InventoryTrackerController {
         inventoryTrackerTable.refresh();
         inventoryTrackerTable.setItems(inventoryItems);
 
-
         // Set serial number column
         serialNumberColumn.setCellValueFactory(new PropertyValueFactory<>("itemSerialNumber"));
         serialNumberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -417,17 +416,18 @@ public class InventoryTrackerController {
             String newPrice = event.getNewValue();
 
             if (isDouble(newPrice)) {
-                item.setItemPrice(newPrice);
+                String formatted = priceFormat(Double.parseDouble(newPrice));
+                item.setItemPrice(formatted);
             } else {
 
-                // TODO MAYBE PUT SCENE SWITCH HERE?
-                System.out.print("Could not set new price.\n");
-            }
-        });
+                System.out.print(toInvalidPriceController());
 
-        // Refresh and reset the table
-        inventoryTrackerTable.refresh();
-        inventoryTrackerTable.setItems(inventoryItems);
+            }
+
+            // Refresh and reset the table
+            inventoryTrackerTable.refresh();
+            inventoryTrackerTable.setItems(inventoryItems);
+        });
     }
 
     public Boolean isDouble(String checkDouble) {
@@ -435,7 +435,7 @@ public class InventoryTrackerController {
         try {
             Double testDouble = Double.parseDouble(checkDouble);
 
-            System.out.print(testDouble + "\n");
+          //  System.out.print(testDouble + "\n");
 
             return true;
         } catch (Exception e) {
