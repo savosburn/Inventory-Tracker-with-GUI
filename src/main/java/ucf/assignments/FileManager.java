@@ -5,7 +5,10 @@ import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileManager {
@@ -67,5 +70,76 @@ public class FileManager {
 
     public String[] parseStrings(String item) {
         return item.split("\t");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // TODO SAVE AS TXT
+    // Post-conditions: Converts observable list to a regular list
+    public List<InventoryItem> observableToList(ObservableList<InventoryItem> items) {
+
+        return new ArrayList<>(items);
+
+    }
+
+    public String saveToTXT(File file, List<InventoryItem> items) {
+        StringBuilder outputString = new StringBuilder(" ");
+
+
+        try(FileWriter writer = new FileWriter(file)) {
+
+            // Add all the objects to the list with \t to separate the items in each object
+            for (InventoryItem item : items) {
+
+                writer.write(item.itemName + "\t");
+                writer.write(item.itemSerialNumber + "\t");
+                writer.write(item.itemPrice + "\t");
+
+                // Newline signifies new object
+                writer.write("\n");
+
+                // Create strings for testing
+                if(outputString.toString().equals(" ")) {
+                    outputString = new StringBuilder(String.format("%s\t", item.itemName));
+                } else {
+                    outputString.append(String.format("%s\t", item.itemName));
+                }
+
+                outputString.append(String.format("%s\t", item.itemSerialNumber));
+                outputString.append(String.format("%s\t", item.itemPrice));
+                outputString.append("\n");
+            }
+
+            return outputString.toString();
+
+        } catch (IOException e) {
+            return "File does not exist.\n";
+        }
+    }
+
+
+    // TODO SAVE AS HTML
+
+    // Post-conditions: Creates a header to save
+    public String generateHead(File file) {
+
+        return String.format("""
+                \t<head>
+                \t\t<meta content = "%s">
+                \t\t<title>
+                \t\t\tInventory Tracker
+                \t\t</title>
+                \t</head>
+                """, file.getName());
     }
 }

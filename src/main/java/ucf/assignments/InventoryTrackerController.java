@@ -489,57 +489,15 @@ public class InventoryTrackerController {
 
             // Save the chosen directory for the next time it opens
             fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directory
-            List<InventoryItem> saveList = observableToList(inventoryItems);
+            List<InventoryItem> saveList = fileManager.observableToList(inventoryItems);
             // TODO SAVE THE FILE
             if (file.toString().contains(".txt")) {
-                System.out.print(saveToTXT(file, saveList));
+                System.out.print(fileManager.saveToTXT(file, saveList));
             }
         } catch (Exception e) {
             System.out.print("File could not be opened.\n");
         }
 
-    }
-
-    // Post-conditions: Converts observable list to a regular list
-    public List<InventoryItem> observableToList(ObservableList<InventoryItem> items) {
-
-        return new ArrayList<>(items);
-
-    }
-
-    public String saveToTXT(File file, List<InventoryItem> items) {
-        StringBuilder outputString = new StringBuilder(" ");
-
-
-        try(FileWriter writer = new FileWriter(file)) {
-
-            // Add all the objects to the list with \t to separate the items in each object
-            for (InventoryItem item : items) {
-
-                writer.write(item.itemName + "\t");
-                writer.write(item.itemSerialNumber + "\t");
-                writer.write(item.itemPrice + "\t");
-
-                // Newline signifies new object
-                writer.write("\n");
-
-                // Create strings for testing
-                if(outputString.toString().equals(" ")) {
-                    outputString = new StringBuilder(String.format("%s\t", item.itemName));
-                } else {
-                    outputString.append(String.format("%s\t", item.itemName));
-                }
-
-                outputString.append(String.format("%s\t", item.itemSerialNumber));
-                outputString.append(String.format("%s\t", item.itemPrice));
-                outputString.append("\n");
-            }
-
-            return outputString.toString();
-
-        } catch (IOException e) {
-            return "File does not exist.\n";
-        }
     }
 
 

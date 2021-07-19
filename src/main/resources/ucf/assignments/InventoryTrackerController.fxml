@@ -34,7 +34,7 @@
                     <children>
                         <MenuButton fx:id="fileMenuButton" layoutX="67.0" layoutY="7.0" mnemonicParsing="false" onAction="#fileMenuButtonClicked" prefHeight="50.0" prefWidth="131.0" style="-fx-background-color: #3da5d9;" text="File Options" textFill="WHITE">
                             <items>
-                                <MenuItem fx:id="saveAsButton" mnemonicParsing="false" onAction="#saveAsButtonClicked" text="Save as..." />
+                                <MenuItem fx:id="saveAsButton" mnemonicParsing="false" onAction="#saveAsButtonClicked" text="🖫 Save as..." />
                                 <MenuItem fx:id="loadButton" mnemonicParsing="false" onAction="#loadButtonClicked" text="Load..." />
                             </items>
                             <font>
