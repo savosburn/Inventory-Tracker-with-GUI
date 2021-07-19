@@ -5,7 +5,6 @@
 
 package ucf.assignments;
 
-import java.math.BigDecimal;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.*;
@@ -21,7 +20,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import javafx.util.converter.DoubleStringConverter;
 
 public class InventoryTrackerController {
 
@@ -56,9 +54,6 @@ public class InventoryTrackerController {
     private Button removeItemButton;
 
     @FXML
-    private Button editItemButton;
-
-    @FXML
     private TextField itemPriceTextField;
 
     @FXML
@@ -87,7 +82,7 @@ public class InventoryTrackerController {
 
 
         // If the name is the wrong length
-        if (!isCorrectNameLength(name)) {
+        if (!isCorrectNameLength(name.length())) {
             // switch scenes
             System.out.print(toInvalidNameController());
         }
@@ -131,8 +126,8 @@ public class InventoryTrackerController {
     }
 
     // Post-conditions: Determines if the item name is the correct length
-    public Boolean isCorrectNameLength(String name) {
-        return (name.length() > 2 && name.length() < 256);
+    public Boolean isCorrectNameLength(Integer name) {
+        return (name > 2 && name < 256);
     }
 
     // Post-conditions: Determines if the serial number is in the correct format
