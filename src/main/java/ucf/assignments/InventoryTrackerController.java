@@ -14,6 +14,8 @@ import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,6 +82,7 @@ public class InventoryTrackerController {
 
     // Declare objects
     Set<String> serialNumbers = new HashSet<>();
+
 
     ObservableList<InventoryItem> inventoryItems = FXCollections.observableArrayList();
 
@@ -281,6 +284,49 @@ public class InventoryTrackerController {
 
     }
 
+
+    // TODO SEARCH
+    /*
+    public void search {
+
+        FilteredList<InventoryItem> filteredList = new FilteredList<>(inventoryItems, b -> true);
+
+        searchTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(item -> {
+                // If filter text is empty, display all persons
+                if (newValue == null || newValue.isEmpty()) {
+                    return  true;
+                }
+
+                // Compare
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (item.getItemName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }
+
+                else if (item.getItemSerialNumber().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (item.getItemPrice().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        }));
+
+        SortedList<InventoryItem> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(inventoryTrackerTable.comparatorProperty());
+        inventoryTrackerTable.setItems(sortedList);
+    } */
+
+
+
+
+
+
+
+
     // Post-conditions: Signifies that the file menu was opened
     @FXML
     public void fileMenuButtonClicked() {
@@ -291,6 +337,8 @@ public class InventoryTrackerController {
 
     @FXML
     void loadButtonClicked(ActionEvent event) {
+
+        /*
 
         // File chooser opens
         //Window stage = fileMenuButton.getScene().getWindow();
@@ -318,7 +366,7 @@ public class InventoryTrackerController {
 
             // Check if file could be loaded
             System.out.print("Could not load file.\n");
-        }
+        } */
 
     }
 
@@ -378,6 +426,24 @@ public class InventoryTrackerController {
 
     }
 
+
+    // Post-condition: Determines if the item is in the list
+    private boolean searchFindsItem(InventoryItem item, String searchText) {
+        return (item.getItemName().toLowerCase().contains(searchText.toLowerCase())) ||
+                (item.getItemSerialNumber().toLowerCase().contains(searchText.toLowerCase())) ||
+                (item.getItemPrice().toLowerCase().contains(searchText.toLowerCase()));
+    }
+
+    // Post-conditions: Adds to a filtered list
+    private ObservableList<InventoryItem> filterList(ObservableList<InventoryItem> items, String searchText) {
+        List <InventoryItem> filteredList = new ArrayList<>();
+        for (InventoryItem item : items) {
+            if (searchFindsItem(item, searchText)) filteredList.add(item);
+        }
+
+        return FXCollections.observableList(filteredList);
+    }
+
     @FXML
     void initialize() {
         assert inventoryTrackerTable != null : "fx:id=\"inventoryTrackerTable\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
@@ -398,6 +464,10 @@ public class InventoryTrackerController {
 
         // Set the initial directory of the file chooser to be the user's directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+
+        // Set new table placeholder
+        inventoryTrackerTable.setPlaceholder(new Label("Nothing in inventory."));
+
 
         // Set the items in the inventory tracker
         inventoryTrackerTable.setItems(inventoryItems);
@@ -474,6 +544,10 @@ public class InventoryTrackerController {
             inventoryTrackerTable.refresh();
             inventoryTrackerTable.setItems(inventoryItems);
         });
+
+        // Set table to update with the search text field
+        searchTextField.textProperty().addListener(((observable, oldValue, newValue) ->
+                inventoryTrackerTable.setItems(filterList(inventoryItems, newValue))));
     }
 
     public Boolean isDouble(String checkDouble) {
