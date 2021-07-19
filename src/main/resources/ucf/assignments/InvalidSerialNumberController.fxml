@@ -9,7 +9,7 @@
     <children>
       <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #3da5d9;">
          <children>
-              <Button fx:id="okButton" layoutX="188.0" layoutY="212.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="45.0" prefWidth="78.0" text="OK" textFill="#2364aa">
+              <Button fx:id="okButton" layoutX="188.0" layoutY="212.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="45.0" prefWidth="78.0" style="-fx-background-color: #ffffff;" text="OK" textFill="#2364aa">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

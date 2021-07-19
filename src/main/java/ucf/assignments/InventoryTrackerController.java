@@ -282,8 +282,54 @@ public class InventoryTrackerController {
     }
 
     @FXML
-    void removeItemButtonClicked(ActionEvent event) {
+    public Boolean removeItemButtonClicked(ActionEvent event) {
+        System.out.print("Remove item button pressed.\n");
 
+        try {
+            // Delete selected item from ObservableList
+            inventoryItems = deleteItem(inventoryTrackerTable.getSelectionModel().getSelectedItem(), inventoryItems, serialNumbers);
+
+            // Remove selected item from gui table
+            inventoryTrackerTable.refresh();
+            inventoryTrackerTable.setItems(inventoryItems);
+
+            // TODO: REMOVE, THIS IS JUST FOR TESTING
+            for (InventoryItem inventoryItem : inventoryItems) {
+                System.out.print(inventoryItem.getItemSerialNumber() + "\n");
+            }
+
+            System.out.print(serialNumbers + "\n");
+
+            return true;
+        } catch (Exception e) {
+
+            // Return false if the item was not deleted
+            System.out.print("The item was not deleted.\n");
+            return false;
+        }
+
+    }
+
+    // Post-conditions: Removes item from Observable list and from Set
+    public ObservableList<InventoryItem> deleteItem(InventoryItem item, ObservableList<InventoryItem> inventoryTracker, Set<String> serialNum) {
+        System.out.printf("Item number %s deleted from Inventory Tracker.\n", item.itemSerialNumber);
+
+        // Remove from set
+        serialNum.remove(item.itemSerialNumber);
+
+        // Set everything to null, then remove
+        item = setToNull(item);
+        inventoryTracker.remove(item);
+
+        return inventoryTracker;
+    }
+
+    public InventoryItem setToNull(InventoryItem item) {
+        item.setItemName(null);
+        item.setItemPrice(null);
+        item.setItemSerialNumber(null);
+
+        return item;
     }
 
     @FXML
@@ -327,13 +373,37 @@ public class InventoryTrackerController {
         serialNumberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         serialNumberColumn.setOnEditCommit(event -> {
             InventoryItem item = event.getRowValue();
-            item.setItemSerialNumber(event.getNewValue());
 
+            // Get the serial number
+            String oldNum = item.itemSerialNumber;
+            String num = event.getNewValue();
+
+            // If it's valid
+            if (isCorrectSerialNumberLength(num) && isCorrectSerialNumberFormat(num)) {
+
+                // If it's not already in the set
+                if (!alreadyInSet(serialNumbers, num, inventoryItems)) {
+                    // set it
+                    serialNumbers.remove(oldNum);
+                    serialNumbers.add(num);
+                    item.setItemSerialNumber(event.getNewValue());
+                }
+                // else
+                else {
+                    item.setItemSerialNumber(oldNum);
+                    System.out.print(toDuplicateItemController());
+                }
+            }
+
+            // Else
+            else {
+                // Bring up an error screen
+                System.out.print(toInvalidSerialNumberController());
+
+            }
+            inventoryTrackerTable.refresh();
+            inventoryTrackerTable.setItems(inventoryItems);
         });
-
-        // Refresh and reset the table
-        inventoryTrackerTable.refresh();
-        inventoryTrackerTable.setItems(inventoryItems);
 
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("itemPrice"));
         priceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
