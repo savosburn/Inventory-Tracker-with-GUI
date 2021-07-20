@@ -1,9 +1,13 @@
+/*
+ *  UCF COP3330 Summer 2021 Assignment 5 Solution
+ *  Copyright 2021 Savannah Osburn
+ */
+
 package ucf.assignments;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javax.swing.text.Document;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +30,12 @@ public class FileManager {
             System.out.print(parsedString[2]);
 
             // Add the string to the observablelist
-
             InventoryItem inventory = new InventoryItem();
             inventory.setItemName(parsedString[0]);
-            inventory.setItemSerialNumber(parsedString[1]);
+            inventory.setItemSerialNumber(parsedString[1].toUpperCase());
             inventory.setItemPrice(parsedString[2]);
 
             tempList.add(inventory);
-
-
-            //tempList = setItems(inventoryItems, parsedString[0], parsedString[1], parsedString[3]);
         }
 
         return tempList;
@@ -66,14 +66,12 @@ public class FileManager {
         }
     }
 
+    // Post-conditions:
     public String[] parseStrings(String item) {
         return item.split("\t");
     }
 
-
-    // TODO PARSE HTML
-
-
+    // Post-conditions:
     public ArrayList<String> loadHTML(File file) {
         ArrayList<String> inventory = new ArrayList<>();
 
@@ -116,10 +114,6 @@ public class FileManager {
         return item.split("&emsp;");
     }
 
-
-
-
-
     // Post-conditions: Parses the strings in the ArrayList and returns them as an ObservableList
     public ObservableList<InventoryItem> addToObservableListHTML(ArrayList<String> items) {
         ObservableList<InventoryItem> tempList = FXCollections.observableArrayList();
@@ -131,14 +125,14 @@ public class FileManager {
             String[] parsedString = parseHTMLStrings(item);
 
             System.out.print(parsedString[0]);
-            System.out.print(parsedString[1]);
+            System.out.print(parsedString[1].toUpperCase());
             System.out.print(parsedString[2]);
 
             // Add the string to the observablelist
 
             InventoryItem inventory = new InventoryItem();
             inventory.setItemName(parsedString[0]);
-            inventory.setItemSerialNumber(parsedString[1]);
+            inventory.setItemSerialNumber(parsedString[1].toUpperCase());
             inventory.setItemPrice(parsedString[2]);
 
             tempList.add(inventory);
@@ -150,16 +144,6 @@ public class FileManager {
         return tempList;
     }
 
-
-
-
-
-
-
-
-
-
-    // TODO SAVE AS TXT
     // Post-conditions: Converts observable list to a regular list
     public List<InventoryItem> observableToList(ObservableList<InventoryItem> items) {
 
@@ -167,9 +151,9 @@ public class FileManager {
 
     }
 
+    // Post-conditions:
     public String saveToTXT(File file, List<InventoryItem> items) {
         StringBuilder outputString = new StringBuilder(" ");
-
 
         try(FileWriter writer = new FileWriter(file)) {
 
@@ -177,7 +161,7 @@ public class FileManager {
             for (InventoryItem item : items) {
 
                 writer.write(item.itemName + "\t");
-                writer.write(item.itemSerialNumber + "\t");
+                writer.write(item.itemSerialNumber.toUpperCase() + "\t");
                 writer.write(item.itemPrice + "\t");
 
                 // Newline signifies new object
@@ -190,7 +174,7 @@ public class FileManager {
                     outputString.append(String.format("%s\t", item.itemName));
                 }
 
-                outputString.append(String.format("%s\t", item.itemSerialNumber));
+                outputString.append(String.format("%s\t", item.itemSerialNumber.toUpperCase()));
                 outputString.append(String.format("%s\t", item.itemPrice));
                 outputString.append("\n");
             }
@@ -202,15 +186,13 @@ public class FileManager {
         }
     }
 
-
-    // TODO SAVE AS HTML
-
+    // Post-conditions:
     public String generateHeader(File file, List<InventoryItem> items) {
         String link = "<html>\n";
 
         // Generate the html link
         link += generateHead(file);
-        link += generateBody(file, items);
+        link += generateBody(items);
         link += "</html>";
 
         return link;
@@ -229,7 +211,8 @@ public class FileManager {
                 """, file.getName());
     }
 
-    public String generateBody(File file, List<InventoryItem> items) {
+    // Post-conditions:
+    public String generateBody(List<InventoryItem> items) {
 
         StringBuilder bodyString = new StringBuilder();
         bodyString.append("\t<body>\n");
@@ -237,7 +220,7 @@ public class FileManager {
         for (InventoryItem item : items) {
 
             bodyString.append(item.itemName).append("&emsp;");
-            bodyString.append(item.itemSerialNumber).append("&emsp;");
+            bodyString.append(item.itemSerialNumber.toUpperCase()).append("&emsp;");
             bodyString.append(item.itemPrice).append("&emsp;").append("<br>\n");
         }
         
@@ -246,9 +229,8 @@ public class FileManager {
         return bodyString.toString();
     }
 
+    // Post-conditions:
     public Boolean writeToHTMLFile(File file, String string) {
-
-
         try {
             PrintWriter writer = new PrintWriter(file);
 
@@ -256,8 +238,6 @@ public class FileManager {
             writer.close();
 
             return true;
-
-
 
         } catch (IOException e) {
             System.out.print("File does not exist.\n");

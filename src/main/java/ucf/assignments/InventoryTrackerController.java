@@ -12,8 +12,6 @@ import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,56 +32,26 @@ public class InventoryTrackerController {
     @FXML
     private URL location;
 
-    @FXML
-    private TableView<InventoryItem> inventoryTrackerTable;
-
-    @FXML
-    private TableColumn<InventoryItem, String> itemColumn;
-
-    @FXML
-    private TableColumn<InventoryItem, String> serialNumberColumn;
-
-    @FXML
-    private TableColumn<InventoryItem, String> priceColumn;
-
-    @FXML
-    private Button addItemButton;
-
-    @FXML
-    private MenuItem saveAsButton;
-
-    @FXML
-    private MenuItem loadButton;
-
-    @FXML
-    private Button removeItemButton;
-
-    @FXML
-    private MenuButton fileMenuButton;
-
-    @FXML
-    private TextField itemPriceTextField;
-
-    @FXML
-    private TextField itemSerialNumberTextField;
-
-    @FXML
-    private TextField itemNameTextField;
-
-    @FXML
-    private TextField searchTextField;
-
-    @FXML
-    private Button helpButton;
+    @FXML private TableView<InventoryItem> inventoryTrackerTable;
+    @FXML private TableColumn<InventoryItem, String> itemColumn;
+    @FXML private TableColumn<InventoryItem, String> serialNumberColumn;
+    @FXML private TableColumn<InventoryItem, String> priceColumn;
+    @FXML private Button addItemButton;
+    @FXML private MenuItem saveAsButton;
+    @FXML private MenuItem loadButton;
+    @FXML private Button removeItemButton;
+    @FXML private MenuButton fileMenuButton;
+    @FXML private TextField itemPriceTextField;
+    @FXML private TextField itemSerialNumberTextField;
+    @FXML private TextField itemNameTextField;
+    @FXML private TextField searchTextField;
+    @FXML private Button helpButton;
 
     FileManager fileManager = new FileManager();
-
     FileChooser fileChooser = new FileChooser();
 
     // Declare objects
     Set<String> serialNumbers = new HashSet<>();
-
-
     ObservableList<InventoryItem> inventoryItems = FXCollections.observableArrayList();
 
     @FXML
@@ -92,7 +60,6 @@ public class InventoryTrackerController {
         String name = itemNameTextField.getText();
         String number = itemSerialNumberTextField.getText();
         String price = itemPriceTextField.getText();
-
 
         // If the name is the wrong length
         if (!isCorrectNameLength(name.length())) {
@@ -173,7 +140,7 @@ public class InventoryTrackerController {
 
         // Make sure item is the correct length
         item.setItemName(name);
-        item.setItemSerialNumber(number);
+        item.setItemSerialNumber(number.toUpperCase());
         item.setItemPrice(price);
 
         items.add(item);
@@ -216,10 +183,9 @@ public class InventoryTrackerController {
             // Catch if the stage could not be opened
             return "Scene switch unsuccessful.\n";
         }
-
     }
 
-    public  String toInvalidSerialNumberController() {
+    public String toInvalidSerialNumberController() {
 
         try {
             // Open new stage
@@ -236,7 +202,6 @@ public class InventoryTrackerController {
             // Catch if the stage could not be opened
             return "Scene switch unsuccessful.\n";
         }
-
     }
 
     public String toInvalidPriceController() {
@@ -284,49 +249,6 @@ public class InventoryTrackerController {
 
     }
 
-
-    // TODO SEARCH
-    /*
-    public void search {
-
-        FilteredList<InventoryItem> filteredList = new FilteredList<>(inventoryItems, b -> true);
-
-        searchTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(item -> {
-                // If filter text is empty, display all persons
-                if (newValue == null || newValue.isEmpty()) {
-                    return  true;
-                }
-
-                // Compare
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (item.getItemName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                }
-
-                else if (item.getItemSerialNumber().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (item.getItemPrice().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        }));
-
-        SortedList<InventoryItem> sortedList = new SortedList<>(filteredList);
-        sortedList.comparatorProperty().bind(inventoryTrackerTable.comparatorProperty());
-        inventoryTrackerTable.setItems(sortedList);
-    } */
-
-
-
-
-
-
-
-
     // Post-conditions: Signifies that the file menu was opened
     @FXML
     public void fileMenuButtonClicked() {
@@ -335,33 +257,11 @@ public class InventoryTrackerController {
         System.out.print("File Menu Opened.\n");
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // Post-conditions:
     @FXML
     void loadButtonClicked(ActionEvent event) {
 
-
-
         // File chooser opens
-        //Window stage = fileMenuButton.getScene().getWindow();
         Window stage = fileMenuButton.getScene().getWindow();
         fileChooser.setTitle("Load To Do List");
         fileChooser.getExtensionFilters().addAll(
@@ -403,30 +303,7 @@ public class InventoryTrackerController {
         }
     }
 
-
-
-
-
-
-    /*
-    public ObservableList<InventoryItem> items(File file) {
-
-        ObservableList<InventoryItem> inventoryItem = FXCollections.observableArrayList();
-
-        try (BufferedReader fileReader = new BufferedReader(new FileReader(file))) {
-
-            String line = null;
-
-            while ((line = fileReader.readLine()) != null)) {
-                String
-            }
-
-        } catch (Exception e) {
-            System.out.print("File not found.\n");
-        }
-
-    } */
-
+    // Post-conditions:
     @FXML
     public Boolean removeItemButtonClicked(ActionEvent event) {
         System.out.print("Remove item button pressed.\n");
@@ -469,6 +346,7 @@ public class InventoryTrackerController {
         return inventoryTracker;
     }
 
+    // Post-conditions:
     public InventoryItem setToNull(InventoryItem item) {
         item.setItemName(null);
         item.setItemPrice(null);
@@ -477,6 +355,7 @@ public class InventoryTrackerController {
         return item;
     }
 
+    // Post-conditions:
     @FXML
     void saveAsButtonClicked(ActionEvent event) {
         Window stage = fileMenuButton.getScene().getWindow();
@@ -508,13 +387,11 @@ public class InventoryTrackerController {
                 System.out.print(printed);
             }
 
-
         } catch (Exception e) {
             System.out.print("File could not be opened.\n");
         }
 
     }
-
 
     // Post-condition: Determines if the item is in the list
     private boolean searchFindsItem(InventoryItem item, String searchText) {
@@ -549,8 +426,6 @@ public class InventoryTrackerController {
         assert itemNameTextField != null : "fx:id=\"itemNameTextField\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert searchTextField != null : "fx:id=\"searchTextField\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert helpButton != null : "fx:id=\"helpButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
-
-
 
         // Set the initial directory of the file chooser to be the user's directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
@@ -590,12 +465,12 @@ public class InventoryTrackerController {
                 if (!alreadyInSet(serialNumbers, num, inventoryItems)) {
                     // set it
                     serialNumbers.remove(oldNum);
-                    serialNumbers.add(num);
-                    item.setItemSerialNumber(event.getNewValue());
+                    serialNumbers.add(num.toUpperCase());
+                    item.setItemSerialNumber(event.getNewValue().toUpperCase());
                 }
                 // else
                 else {
-                    item.setItemSerialNumber(oldNum);
+                    item.setItemSerialNumber(oldNum.toUpperCase());
                     System.out.print(toDuplicateItemController());
                 }
             }
@@ -612,8 +487,6 @@ public class InventoryTrackerController {
 
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("itemPrice"));
         priceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-
         priceColumn.setOnEditCommit(event -> {
             InventoryItem item = event.getRowValue();
 
@@ -641,7 +514,6 @@ public class InventoryTrackerController {
     }
 
     public Boolean isDouble(String checkDouble) {
-
         try {
             Double testDouble = Double.parseDouble(checkDouble);
 

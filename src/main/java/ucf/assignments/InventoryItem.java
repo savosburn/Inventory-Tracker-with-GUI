@@ -49,46 +49,4 @@ public class InventoryItem {
     public void setItemPrice(String itemPrice) {
         this.itemPrice = itemPrice;
     }
-
-        /*
-        private final StringProperty itemName = new SimpleStringProperty();
-        private final StringProperty itemSerialNumber = new SimpleStringProperty();
-        private BigDecimal itemPrice;
-
-
-        public InventoryItem(BigDecimal itemPrice) {
-                this.itemPrice = itemPrice;
-        }
-
-        public void setItemPrice(BigDecimal itemPrice) {
-                this.itemPrice = itemPrice;
-        }
-
-        public final String getItemName() {
-                return itemName.get();
-        }
-
-        public final void setItemName(String name) {
-                itemName.set(name);
-        }
-
-        public StringProperty itemNameProperty() {
-                return itemName;
-        }
-
-        public String getItemSerialNumber() {
-                return itemSerialNumber.get();
-        }
-
-        public StringProperty itemSerialNumberProperty() {
-                return itemSerialNumber;
-        }
-
-        public void setItemSerialNumber(String itemSerialNumber) {
-                this.itemSerialNumber.set(itemSerialNumber);
-        }
-
-        public BigDecimal getItemPrice() {
-                return itemPrice;
-        } */
 }
