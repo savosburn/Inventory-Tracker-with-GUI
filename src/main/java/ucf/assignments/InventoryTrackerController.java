@@ -388,6 +388,11 @@ public class InventoryTrackerController {
                 inventoryItems = fileManager.addToObservableList(inventoryStrings);
             }
 
+            else if (file.toString().contains(".html")) {
+                ArrayList<String> inventoryStrings = fileManager.loadHTML(file);
+                inventoryItems = fileManager.addToObservableListHTML(inventoryStrings);
+            }
+
             // Refresh and reset the table
             inventoryTrackerTable.refresh();
             inventoryTrackerTable.setItems(inventoryItems);
@@ -490,6 +495,8 @@ public class InventoryTrackerController {
             // Save the chosen directory for the next time it opens
             fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directory
             List<InventoryItem> saveList = fileManager.observableToList(inventoryItems);
+
+
             // TODO SAVE THE FILE
             if (file.toString().contains(".txt")) {
                 System.out.print(fileManager.saveToTXT(file, saveList));

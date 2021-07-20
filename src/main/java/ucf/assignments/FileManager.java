@@ -3,6 +3,7 @@ package ucf.assignments;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javax.swing.text.Document;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +71,84 @@ public class FileManager {
     }
 
 
+    // TODO PARSE HTML
 
+
+    public ArrayList<String> loadHTML(File file) {
+        ArrayList<String> inventory = new ArrayList<>();
+
+        try {
+            File myFile = new File(file.getName());
+            Scanner scanner = new Scanner(myFile);
+
+            startScanner(scanner);
+
+            while (scanner.hasNextLine()) {
+                String nextLine = scanner.nextLine();
+
+                if (!nextLine.equals("\t</body>") && !nextLine.equals("</html>")) {
+                    inventory.add(nextLine);
+                }
+            }
+
+            for (String s : inventory) {
+                System.out.print(s + "\n");
+            }
+            return inventory;
+
+        } catch (Exception e) {
+            System.out.print("Could not load file.\n");
+            return null;
+        }
+    }
+
+    // Post-conditions: Makes the scanner start at a certain point
+    private void startScanner(Scanner scanner) {
+        for (int i = 0; i < 8; i++) {
+            if (scanner.hasNextLine()){
+                scanner.nextLine();
+            }
+        }
+    }
+
+    // Post-conditions: Parses HTML strings
+    public String[] parseHTMLStrings(String item) {
+        return item.split("&emsp;");
+    }
+
+
+
+
+
+    // Post-conditions: Parses the strings in the ArrayList and returns them as an ObservableList
+    public ObservableList<InventoryItem> addToObservableListHTML(ArrayList<String> items) {
+        ObservableList<InventoryItem> tempList = FXCollections.observableArrayList();
+
+        // Iterate through every object string
+        for (String item : items) {
+
+            // Parse each string
+            String[] parsedString = parseHTMLStrings(item);
+
+            System.out.print(parsedString[0]);
+            System.out.print(parsedString[1]);
+            System.out.print(parsedString[2]);
+
+            // Add the string to the observablelist
+
+            InventoryItem inventory = new InventoryItem();
+            inventory.setItemName(parsedString[0]);
+            inventory.setItemSerialNumber(parsedString[1]);
+            inventory.setItemPrice(parsedString[2]);
+
+            tempList.add(inventory);
+
+
+            //tempList = setItems(inventoryItems, parsedString[0], parsedString[1], parsedString[3]);
+        }
+
+        return tempList;
+    }
 
 
 
@@ -157,10 +235,10 @@ public class FileManager {
         bodyString.append("\t<body>\n");
 
         for (InventoryItem item : items) {
-            //  bodyString.append(String.format("<h1>Inventory Item %s</h1>\n", i + 1));
-            bodyString.append("&emsp;").append(item.itemName).append("\t");
-            bodyString.append("&emsp;").append(item.itemSerialNumber).append("\t");
-            bodyString.append("&emsp;").append(item.itemPrice).append("<br>\n");
+
+            bodyString.append(item.itemName).append("&emsp;");
+            bodyString.append(item.itemSerialNumber).append("&emsp;");
+            bodyString.append(item.itemPrice).append("&emsp;").append("<br>\n");
         }
         
         bodyString.append("\t</body>\n");
