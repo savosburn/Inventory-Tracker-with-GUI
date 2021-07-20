@@ -12,4 +12,10 @@ To remove an item from the inventory tracker, select the item to be deleted, the
 To remove all items from the inventory tracker, simply select "CLEAR INVENTORY".
 
 ### Edit Item
+To edit an item, double click the item you wish to edit, and re-enter the information./
+Press enter to save changes.
+
+### Saving Files
+
+### Loading Files
 
