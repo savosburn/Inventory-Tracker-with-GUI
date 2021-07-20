@@ -7,6 +7,9 @@ To add an item to the inventory tracker, fill in the item name, serial number, a
 * **Serial numbers** must consist ONLY of letters and numbers and MUST be in the format of XXXXXXXXXX (10 characters)
 * **Item prices** must be entered as a number
 
-### Remove an Item
+### Remove Item
 To remove an item from the inventory tracker, select the item to be deleted, then press "REMOVE ITEMS".\
 To remove all items from the inventory tracker, simply select "CLEAR INVENTORY".
+
+### Edit Item
+
