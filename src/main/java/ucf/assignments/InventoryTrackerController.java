@@ -494,6 +494,14 @@ public class InventoryTrackerController {
             if (file.toString().contains(".txt")) {
                 System.out.print(fileManager.saveToTXT(file, saveList));
             }
+
+            else if (file.toString().contains(".html")) {
+                String printString = fileManager.generateHeader(file, saveList);
+                Boolean printed = fileManager.writeToHTMLFile(file, printString);
+                System.out.print(printed);
+            }
+
+
         } catch (Exception e) {
             System.out.print("File could not be opened.\n");
         }

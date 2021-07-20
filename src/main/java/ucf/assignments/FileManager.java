@@ -3,10 +3,7 @@ package ucf.assignments;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -130,6 +127,17 @@ public class FileManager {
 
     // TODO SAVE AS HTML
 
+    public String generateHeader(File file, List<InventoryItem> items) {
+        String link = "<html>\n";
+
+        // Generate the html link
+        link += generateHead(file);
+        link += generateBody(file, items);
+        link += "</html>";
+
+        return link;
+    }
+
     // Post-conditions: Creates a header to save
     public String generateHead(File file) {
 
@@ -141,5 +149,41 @@ public class FileManager {
                 \t\t</title>
                 \t</head>
                 """, file.getName());
+    }
+
+    public String generateBody(File file, List<InventoryItem> items) {
+
+        StringBuilder bodyString = new StringBuilder();
+        bodyString.append("\t<body>\n");
+
+        for (InventoryItem item : items) {
+            //  bodyString.append(String.format("<h1>Inventory Item %s</h1>\n", i + 1));
+            bodyString.append("&emsp;").append(item.itemName).append("\t");
+            bodyString.append("&emsp;").append(item.itemSerialNumber).append("\t");
+            bodyString.append("&emsp;").append(item.itemPrice).append("<br>\n");
+        }
+        
+        bodyString.append("\t</body>\n");
+
+        return bodyString.toString();
+    }
+
+    public Boolean writeToHTMLFile(File file, String string) {
+
+
+        try {
+            PrintWriter writer = new PrintWriter(file);
+
+            writer.write(string);
+            writer.close();
+
+            return true;
+
+
+
+        } catch (IOException e) {
+            System.out.print("File does not exist.\n");
+            return false;
+        }
     }
 }
