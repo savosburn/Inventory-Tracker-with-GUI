@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #D0B49F;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.DuplicateItemController">
+<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #d0b49f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.DuplicateItemController">
     <children>
-      <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #f8dfd8;">
+      <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #D0B49F;">
          <children>
-              <Button fx:id="okButton" layoutX="194.0" layoutY="210.0" mnemonicParsing="false" onAction="#okButtonPressed" style="-fx-background-color: #d0b49f;" text="OK" textFill="WHITE">
+            <ImageView fitHeight="278.0" fitWidth="454.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Images/BackgroundImage.jpg" />
+               </image>
+            </ImageView>
+              <Button fx:id="okButton" layoutX="184.0" layoutY="193.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="54.0" prefWidth="85.0" style="-fx-background-color: #D0B49F;" text="OK" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
             </Button>
-              <Text fill="#d0b49f" layoutX="97.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM ALREADY ADDED">
+              <Text fill="#d0b49f" layoutX="95.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DUPLICATE ITEM">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="System Bold" size="33.0" />
                </font>
             </Text>
-              <Text fill="#d0b49f" layoutX="55.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have already added this item.">
+              <Text fill="#d0b49f" layoutX="48.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This item is already in the inventory.">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Text>
-              <Text fill="#d0b49f" layoutX="85.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please add a different item.">
+              <Text fill="#d0b49f" layoutX="85.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please add a different item.">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>

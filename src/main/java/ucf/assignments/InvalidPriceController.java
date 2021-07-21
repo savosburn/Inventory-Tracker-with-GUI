@@ -20,9 +20,9 @@ public class InvalidPriceController {
     @FXML
     private URL location;
 
-    @FXML
-    private Button okButton;
+    @FXML private Button okButton;
 
+    // Post-conditions: Returns scene to InventoryTrackerController.fxml
     @FXML
     public String okButtonPressed(ActionEvent event) {
 
@@ -42,6 +42,7 @@ public class InvalidPriceController {
 
     }
 
+    // Post-conditions: Initializes the button
     @FXML
     void initialize() {
         assert okButton != null : "fx:id=\"okButton\" was not injected: check your FXML file 'InvalidPriceController.fxml'.";

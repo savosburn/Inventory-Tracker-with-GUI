@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #2364aa;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InvalidSerialNumberController">
+<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #d0b49f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InvalidSerialNumberController">
     <children>
-      <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #3da5d9;">
+      <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #d0b49f;">
          <children>
-              <Button fx:id="okButton" layoutX="188.0" layoutY="212.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="45.0" prefWidth="78.0" style="-fx-background-color: #ffffff;" text="OK" textFill="#2364aa">
+            <ImageView fitHeight="282.0" fitWidth="454.0" layoutY="-1.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Images/BackgroundImage.jpg" />
+               </image>
+            </ImageView>
+              <Button fx:id="okButton" layoutX="188.0" layoutY="212.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="45.0" prefWidth="78.0" style="-fx-background-color: #d0b49f;" text="OK" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-              <Text fill="WHITE" layoutX="84.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please re-enter the serial number.">
+              <Text fill="#d0b49f" layoutX="83.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please re-enter the serial number.">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-              <Text fill="WHITE" layoutX="29.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your serial number must contain ONLY letters and numbers.">
+              <Text fill="#d0b49f" layoutX="43.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" must contain ONLY letters and numbers.">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-              <Text fill="WHITE" layoutX="202.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AND">
+              <Text fill="#d0b49f" layoutX="202.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AND">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Text>
-              <Text fill="WHITE" layoutX="60.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your serial number must be 10 characters long.">
+              <Text fill="#d0b49f" layoutX="31.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The serial number must be 10 characters long.">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-              <Text fill="WHITE" layoutX="69.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID SERIAL NUMBER">
+              <Text fill="#d0b49f" layoutX="26.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID SERIAL NUMBER">
                <font>
-                  <Font name="System Bold" size="26.0" />
+                  <Font name="System Bold" size="33.0" />
                </font>
             </Text>
          </children>

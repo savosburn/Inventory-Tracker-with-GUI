@@ -41,7 +41,7 @@ public class FileManager {
         return tempList;
     }
 
-    // Post-conditions: Adds the strings to an ArrayList
+    // Post-conditions: Adds the strings from a .txt to an ArrayList
     public ArrayList<String> loadFileStrings(File file) {
         // Create new ArrayList
         ArrayList<String> items = new ArrayList<>();
@@ -66,7 +66,7 @@ public class FileManager {
         }
     }
 
-    // Post-conditions:
+    // Post-conditions: Splits the strings from a .txt at the tabs (\t)
     public String[] parseStrings(String item) {
         return item.split("\t");
     }
@@ -100,7 +100,7 @@ public class FileManager {
         }
     }
 
-    // Post-conditions: Makes the scanner start at a certain point
+    // Post-conditions: Makes the scanner start at a certain point in the .html document
     private void startScanner(Scanner scanner) {
         for (int i = 0; i < 8; i++) {
             if (scanner.hasNextLine()){
@@ -109,12 +109,12 @@ public class FileManager {
         }
     }
 
-    // Post-conditions: Parses HTML strings
+    // Post-conditions: Parses HTML strings at "&emsp;"
     public String[] parseHTMLStrings(String item) {
         return item.split("&emsp;");
     }
 
-    // Post-conditions: Parses the strings in the ArrayList and returns them as an ObservableList
+    // Post-conditions: Parses the strings in the ArrayList and returns them as an ObservableList for a .html document
     public ObservableList<InventoryItem> addToObservableListHTML(ArrayList<String> items) {
         ObservableList<InventoryItem> tempList = FXCollections.observableArrayList();
 
@@ -143,12 +143,10 @@ public class FileManager {
 
     // Post-conditions: Converts observable list to a regular list
     public List<InventoryItem> observableToList(ObservableList<InventoryItem> items) {
-
         return new ArrayList<>(items);
-
     }
 
-    // Post-conditions:
+    // Post-conditions: Saves items to a .txt files
     public String saveToTXT(File file, List<InventoryItem> items) {
         StringBuilder outputString = new StringBuilder(" ");
 
@@ -183,7 +181,7 @@ public class FileManager {
         }
     }
 
-    // Post-conditions:
+    // Post-conditions: Generates the contents to save to a .html file
     public String generateHeader(File file, List<InventoryItem> items) {
         String link = "<html>\n";
 
@@ -208,7 +206,7 @@ public class FileManager {
                 """, file.getName());
     }
 
-    // Post-conditions:
+    // Post-conditions: Creates the body information to save to a .html file
     public String generateBody(List<InventoryItem> items) {
 
         StringBuilder bodyString = new StringBuilder();
@@ -226,7 +224,7 @@ public class FileManager {
         return bodyString.toString();
     }
 
-    // Post-conditions:
+    // Post-conditions: Prints information to the .html file
     public Boolean writeToHTMLFile(File file, String string) {
         try {
             PrintWriter writer = new PrintWriter(file);

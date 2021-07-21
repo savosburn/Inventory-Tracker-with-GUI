@@ -6,88 +6,122 @@ class App {
     main()
 }
 
-class SceneManager {
-    scenes: Map<String, Scene>
-
-    load()
-    getScene(String): Scene
-}
-
 class InventoryTrackerController {
-    items: ItemModel
-    scenes: SceneManager
-    fileManager: FileManager
 
-    + InventoryTrackerController(ItemModel, SceneManger)
+    inventoryTrackerTable: TableView<InventoryItem> -- FXML
+    itemColumn: TableColumn<InventoryItem, String> -- FXML
+    serialNumberColumn: TableColumn<InventoryItem, String> -- FXML
+    priceColumn: TableColumn<InventoryItem, String> -- FXML
+    addItemButton: Button -- FXML
+    saveAsButton: MenuItem -- FXML
+    loadButton: MenuItem -- FXML
+    removeItemButton: Button -- FXML
+    fileMenuButton: MenuButton -- FXML
+    itemPriceTextField: TextField -- FXML
+    itemSerialNumberTextField: TextField -- FXML
+    itemNameTextField: TextField -- FXML
+    searchTextField: TextField -- FXML
 
-    + addItemButtonCLicked(EventHandler)
-    + editItemButtonClicked((EventHandler)
-    + removeItemButtonClicked((EventHandler)
-    + saveInventoryAsCSVButtonClicked()
-    + saveInventoryAsHTMLButtonClicked()
-    + saveInventoryAsJSONButtonClicked()
 
-    addItem(String, String, BigDecimal)
-    editItem()
-    saveInventoryAsCSV(filename: String)
-    saveInventoryAsHTML(filename: String)
-    saveInventoryAsJSON(filename: String)
+    helpButton: Button -- FXML
+
+    fileManger: FileManager
+    fileChooser: FileChooser
+    serialNumbers: Set
+    inventoryItems: ObservableList<InventoryItem>
+
+    + addItemButtonClicked(): Adds a new inventory item to table
+    + alreadyInSet(Set<String>, String, ObservableList<InventoryItem>): Determines if a serial number is already in the set
+    + isCorrectNameLength(Integer name): Determines if the item name is the correct length
+    + isCorrectSerialNumberFormat(String): Determines if the serial number is in the correct format
+    + isCorrectSerialNumberLength(String): Determines if the serial number is the correct length
+    + isCorrectPriceFormat(String): Determines if the price is in the correct format
+    + setItems(ObservableList<InventoryItem> items, String, String, String): Sets values into an ObservableList
+    + priceFormat(Double): Formats the price into an acceptable currency format
+    - clearTextFields(): Clears all the text fields in the gui
+    + toInvalidNameController(): Switches scene to InvalidNameController.fxml
+    + toInvalidSerialNumberController(): Switches scene to InvalidSerialNumberController.fxml
+    + toInvalidPriceController(): Switches scene to InvalidPriceController.fxml
+    + toDuplicateItemController(): Switches scene to DuplicateItemController.fxml
+
+    + helpButtonClicked():
+
+    + fileMenuButtonClicked(): Signifies that the file menu was opened
+    + loadButtonClicked(): Loads information from a chosen file to the TableView
+    + removeItemButtonClicked(): Removes a selected item from the TableView
+    + deleteItem(): Removes item from Observable list and from Set
+    + setToNull(InventoryItem): Sets all fields of an InventoryItem to null
+    + saveAsButtonClicked(): Saves the items in the TableView to an external file
+    - searchFindsItem(InventoryItem, String): Determines if the user's search is in an InventoryItem
+    - filterList(ObservableList<InventoryItem>, String): Adds to a filtered list if the searched item was found
+    + initialize(): initializes the TableView
 }
 
-class AddItemWindowController {
+class InventoryItem {
+    itemName: String
+    itemSerialNumber: String
+    itemPrice: String
 
+    + inventoryItem(): constructor
+    + getItemName()
+    + setItemName(String)
+    + getItemSerialNumber()
+    + setItemSerialNumber(String)
+    + getItemPrice())
+    + setItemPrice(String
 }
 
-class EditItemWindowController {
+class DuplicateItemController {
+    okbutton: Button - FXML
 
+    + okButtonPressed(): Returns scene to InventoryTrackerController.fxml
+    + initialize(): Initializes the button
 }
 
-class RemoveItemWindowController {
+class InvalidNameController {
+    okButton: Button - FXML
 
+    + okButtonPressed(): Returns scene to InventoryTrackerController.fxml
+    + initialize(): Initializes the button
 }
 
-class SearchItemWindowController {
+class InvalidPriceController {
+    okButton: Button - FXML
 
+    + okButtonPressed(): Returns scene to InventoryTrackerController.fxml
+    + initialize(): Initializes the button
 }
 
-class ItemModel {
-    - ObservableList<Item>
-}
+class InvalidSerialNumberController {
+    okButton: Button - FXML
 
-class Item {
-    - name: SimpleStringProperty
-    - serialNumber: SimpleStringProperty
-    - value: BigDecimal or SimpleDoubleProperty
-
-    + getName()
-    + setName()
-    + nameProperty()
-    + getSerialNumber()
-    + setSerialNumber()
-    + serialNumberProperty()
-    + getValue()
-    + setValue()
+    + okButtonPressed(): Returns scene to InventoryTrackerController.fxml
+    + initialize(): Initializes the button
 }
 
 class FileManager {
-    saveAsCSV(filename: String, data: String)
-    saveAsHTML(filename: String, data: String)
-    saveAsJSON(filename: String, data: String)
+    + addToObservableList(ArrayList<String>): Parses the strings in the ArrayList and returns them as an ObservableList
+    + loadFileStrings(File): Adds the strings from a .txt to an ArrayList
+    + parseStrings(String): Splits the strings from a .txt at the tabs (\t)
+    + startScanner(Scanner): Makes the scanner start at a certain point in the .html document
+    + parseHTMLStrings(String): Parses HTML strings at "&emsp;"
+    + addToObservableListHTML(ArrayList<String>): Parses the strings in the ArrayList and returns them as an ObservableList for a .html document
+    + observableToList(ObservableList<InventoryItem>): Converts observable list to a regular list
+    + saveToTXT(File, List<InventoryItem>): Saves items to a .txt files
+    + generateHeader(File, List<InventoryItem>): Generates the contents to save to a .html file
+    + generateHead(File): Creates a header to save
+    + generateBody(List<InventoryItem>): Creates the body information to save to a .html file
+    + writeToHTMLFile(File, String): Prints information to the .html file
 }
 
-openjfx.org.Application <|-- App
-App -- SceneManager
-SceneManager -- InventoryTrackerController
-SceneManager -- AddItemWindowController
-SceneManager -- EditItemWindowController
-SceneManager -- RemoveItemWindowController
-SceneManager -- SearchItemWindowController
-InventoryTrackerController o-- ItemModel
-AddItemWindowController o-- ItemModel
-EditItemWindowController o-- ItemModel
-RemoveItemWindowController o-- ItemModel
-SearchItemWindowController o-- ItemModel
-ItemModel *-- Item
-InventoryTrackerController o-- FileManager
+javafx.Application <|- App
+App *--> InventoryTrackerController
+App *--> InventoryItem
+InventoryItem - InventoryTrackerController
+InventoryTrackerController -- DuplicateItemController
+InventoryTrackerController -- InvalidNameController
+InventoryTrackerController -- InvalidSerialNumberController
+InventoryTrackerController -- InvalidPriceController
+InventoryTrackerController *--> FileManager
 
 @enduml

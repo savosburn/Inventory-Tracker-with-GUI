@@ -12,7 +12,6 @@ import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -54,8 +53,9 @@ public class InventoryTrackerController {
     Set<String> serialNumbers = new HashSet<>();
     ObservableList<InventoryItem> inventoryItems = FXCollections.observableArrayList();
 
+    // Post-conditions: Adds a new inventory item to table
     @FXML
-    void addItemButtonClicked() {
+    public void addItemButtonClicked() {
 
         String name = itemNameTextField.getText();
         String number = itemSerialNumberTextField.getText();
@@ -97,7 +97,7 @@ public class InventoryTrackerController {
         clearTextFields();
     }
 
-    // Post-conditions: Determines if it's already in the set
+    // Post-conditions: Determines if a serial number is already in the set
     public Boolean alreadyInSet(Set<String> serialNumber, String number, ObservableList<InventoryItem> allItems) {
 
         serialNumber.add(number);
@@ -107,7 +107,7 @@ public class InventoryTrackerController {
 
     // Post-conditions: Determines if the item name is the correct length
     public Boolean isCorrectNameLength(Integer name) {
-        return (name > 2 && name < 256);
+        return (name >= 2 && name <= 256);
     }
 
     // Post-conditions: Determines if the serial number is in the correct format
@@ -134,7 +134,7 @@ public class InventoryTrackerController {
         }
     }
 
-    // Post-conditions: Creates an observable list with the values
+    // Post-conditions: Sets values into an ObservableList
     public ObservableList<InventoryItem> setItems(ObservableList<InventoryItem> items, String name, String number, String price) {
         InventoryItem item = new InventoryItem();
 
@@ -166,6 +166,7 @@ public class InventoryTrackerController {
         itemPriceTextField.clear();
     }
 
+    // Post-conditions: Switches scene to InvalidNameController.fxml
     public String toInvalidNameController() {
 
         try {
@@ -185,6 +186,7 @@ public class InventoryTrackerController {
         }
     }
 
+    // Post-conditions: Switches scene to InvalidSerialNumberController.fxml
     public String toInvalidSerialNumberController() {
 
         try {
@@ -204,6 +206,7 @@ public class InventoryTrackerController {
         }
     }
 
+    // Post-conditions: Switches scene to InvalidPriceController.fxml
     public String toInvalidPriceController() {
 
         try {
@@ -244,8 +247,9 @@ public class InventoryTrackerController {
 
     }
 
+    // TODO CREATE A HELP SCREEN?
     @FXML
-    void helpButtonClicked(ActionEvent event) {
+    void helpButtonClicked() {
 
     }
 
@@ -257,9 +261,9 @@ public class InventoryTrackerController {
         System.out.print("File Menu Opened.\n");
     }
 
-    // Post-conditions:
+    // Post-conditions: Loads information from a chosen file to the TableView
     @FXML
-    void loadButtonClicked(ActionEvent event) {
+    public void loadButtonClicked() {
 
         // File chooser opens
         Window stage = fileMenuButton.getScene().getWindow();
@@ -303,9 +307,9 @@ public class InventoryTrackerController {
         }
     }
 
-    // Post-conditions:
+    // Post-conditions: Removes a selected item from the TableView
     @FXML
-    public Boolean removeItemButtonClicked(ActionEvent event) {
+    public Boolean removeItemButtonClicked() {
         System.out.print("Remove item button pressed.\n");
 
         try {
@@ -346,7 +350,7 @@ public class InventoryTrackerController {
         return inventoryTracker;
     }
 
-    // Post-conditions:
+    // Post-conditions: Sets all fields of an InventoryItem to null
     public InventoryItem setToNull(InventoryItem item) {
         item.setItemName(null);
         item.setItemPrice(null);
@@ -355,9 +359,9 @@ public class InventoryTrackerController {
         return item;
     }
 
-    // Post-conditions:
+    // Post-conditions: Saves the items in the TableView to an external file
     @FXML
-    void saveAsButtonClicked(ActionEvent event) {
+    void saveAsButtonClicked() {
         Window stage = fileMenuButton.getScene().getWindow();
         fileChooser.setTitle("Save Dialog");
         fileChooser.setInitialFileName("New File");
@@ -393,14 +397,14 @@ public class InventoryTrackerController {
 
     }
 
-    // Post-condition: Determines if the item is in the list
+    // Post-condition: Determines if the user's search is in an InventoryItem
     private boolean searchFindsItem(InventoryItem item, String searchText) {
         return (item.getItemName().toLowerCase().contains(searchText.toLowerCase())) ||
                 (item.getItemSerialNumber().toLowerCase().contains(searchText.toLowerCase())) ||
                 (item.getItemPrice().toLowerCase().contains(searchText.toLowerCase()));
     }
 
-    // Post-conditions: Adds to a filtered list
+    // Post-conditions: Adds to a filtered list if the searched item was found
     private ObservableList<InventoryItem> filterList(ObservableList<InventoryItem> items, String searchText) {
         List <InventoryItem> filteredList = new ArrayList<>();
         for (InventoryItem item : items) {
@@ -410,6 +414,7 @@ public class InventoryTrackerController {
         return FXCollections.observableList(filteredList);
     }
 
+    // Post-conditions: initializes the TableView
     @FXML
     void initialize() {
         assert inventoryTrackerTable != null : "fx:id=\"inventoryTrackerTable\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";

@@ -5,11 +5,6 @@
 
 package ucf.assignments;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
-import java.math.BigDecimal;
-
 public class InventoryItem {
 
     String itemName;
