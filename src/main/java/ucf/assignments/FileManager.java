@@ -136,9 +136,6 @@ public class FileManager {
             inventory.setItemPrice(parsedString[2]);
 
             tempList.add(inventory);
-
-
-            //tempList = setItems(inventoryItems, parsedString[0], parsedString[1], parsedString[3]);
         }
 
         return tempList;

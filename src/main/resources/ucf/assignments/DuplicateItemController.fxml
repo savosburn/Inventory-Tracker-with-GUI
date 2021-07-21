@@ -5,26 +5,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #2364aa;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.DuplicateItemController">
+<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #D0B49F;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.DuplicateItemController">
     <children>
-      <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #3da5d9;">
+      <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #f8dfd8;">
          <children>
-              <Button fx:id="okButton" layoutX="194.0" layoutY="210.0" mnemonicParsing="false" onAction="#okButtonPressed" style="-fx-background-color: #fffffff;" text="OK" textFill="#2364aa">
+              <Button fx:id="okButton" layoutX="194.0" layoutY="210.0" mnemonicParsing="false" onAction="#okButtonPressed" style="-fx-background-color: #d0b49f;" text="OK" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-              <Text fill="WHITE" layoutX="97.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM ALREADY ADDED">
+              <Text fill="#d0b49f" layoutX="97.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM ALREADY ADDED">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-              <Text fill="WHITE" layoutX="55.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have already added this item.">
+              <Text fill="#d0b49f" layoutX="55.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have already added this item.">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Text>
-              <Text fill="WHITE" layoutX="85.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please add a different item.">
+              <Text fill="#d0b49f" layoutX="85.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please add a different item.">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
