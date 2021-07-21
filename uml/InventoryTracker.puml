@@ -32,10 +32,10 @@ class InventoryTrackerController {
 
     + addItemButtonClicked(): Adds a new inventory item to table
     + alreadyInSet(Set<String>, String, ObservableList<InventoryItem>): Determines if a serial number is already in the set
-    + isCorrectNameLength(Integer name): Determines if the item name is the correct length
-    + isCorrectSerialNumberFormat(String): Determines if the serial number is in the correct format
-    + isCorrectSerialNumberLength(String): Determines if the serial number is the correct length
-    + isCorrectPriceFormat(String): Determines if the price is in the correct format
+    + isCorrectNameLength(Integer name): Returns true if the name is in the correct length requirements
+    + isCorrectSerialNumberFormat(String): Returns true if the serial number is in the correct format
+    + isCorrectSerialNumberLength(String): Returns true if the serial number is the correct length
+    + isCorrectPriceFormat(String): Returns true if the price is the correct format
     + setItems(ObservableList<InventoryItem> items, String, String, String): Sets values into an ObservableList
     + priceFormat(Double): Formats the price into an acceptable currency format
     - clearTextFields(): Clears all the text fields in the gui

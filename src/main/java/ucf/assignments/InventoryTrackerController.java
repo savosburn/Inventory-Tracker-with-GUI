@@ -5,7 +5,7 @@
 
 package ucf.assignments;
 
-import java.io.*;
+import java.io.File;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.*;
@@ -46,51 +46,64 @@ public class InventoryTrackerController {
     @FXML private TextField searchTextField;
     @FXML private Button helpButton;
 
+    // Declare objects
     FileManager fileManager = new FileManager();
     FileChooser fileChooser = new FileChooser();
 
-    // Declare objects
     Set<String> serialNumbers = new HashSet<>();
     ObservableList<InventoryItem> inventoryItems = FXCollections.observableArrayList();
 
     // Post-conditions: Adds a new inventory item to table
     @FXML
     public void addItemButtonClicked() {
+        System.out.print("Add Item button clicked.\n");
 
+        // Get the information that needs to be added to the inventory
         String name = itemNameTextField.getText();
         String number = itemSerialNumberTextField.getText();
         String price = itemPriceTextField.getText();
 
         // If the name is the wrong length
         if (!isCorrectNameLength(name.length())) {
-            // switch scenes
+
+            // Provide error message
             System.out.print(toInvalidNameController());
         }
 
-        // If the serial number is wrong
+        // If the serial number is the wrong length or the wrong format
         else if (!isCorrectSerialNumberFormat(number) || !isCorrectSerialNumberLength(number)) {
-            // switch scenes
+
+            // Provide error message
             System.out.print(toInvalidSerialNumberController());
         }
 
+        // If the price is not a number
         else if (!isCorrectPriceFormat(price)) {
-            // Switch scenes
+
+            // Provide error message
             System.out.print(toInvalidPriceController());
         }
 
+        // If the item is already in the inventory tracker
         else if (alreadyInSet(serialNumbers, number, inventoryItems)) {
-            // switch scenes
+
+            // Provide error message
             System.out.print(toDuplicateItemController());
         }
 
+        // Otherwise, if the item is valid
         else {
+
+            // Set the price to the proper format
             double priceDouble = Double.parseDouble(price);
             String priceToString = priceFormat(priceDouble);
 
+            // Add the item to the inventory tracker
             ObservableList<InventoryItem> temp = setItems(inventoryItems, name, number, priceToString);
             System.out.print(temp.get(temp.size() - 1).getItemName() + "added");
         }
 
+        // Update the table and clear the text fields
         inventoryTrackerTable.refresh();
         inventoryTrackerTable.setItems(inventoryItems);
 
@@ -99,37 +112,41 @@ public class InventoryTrackerController {
 
     // Post-conditions: Determines if a serial number is already in the set
     public Boolean alreadyInSet(Set<String> serialNumber, String number, ObservableList<InventoryItem> allItems) {
-
+        // Add the serial number to a set
         serialNumber.add(number);
 
+        // Based on if the set changes size, determine if the item is already in the inventory
         return serialNumber.size() != (allItems.size() + 1);
     }
 
-    // Post-conditions: Determines if the item name is the correct length
+    // Post-conditions: Returns true if the name is in the correct length requirements
     public Boolean isCorrectNameLength(Integer name) {
         return (name >= 2 && name <= 256);
     }
 
-    // Post-conditions: Determines if the serial number is in the correct format
+    // Post-conditions: Returns true if the serial number is in the correct format
     public Boolean isCorrectSerialNumberFormat(String serialNumber) {
         return serialNumber.matches("[a-zA-Z0-9]*");
     }
 
-    // Post-conditions: Determines if the serial number is the correct length
+    // Post-conditions: Returns true if the serial number is the correct length
     public Boolean isCorrectSerialNumberLength(String serialNumber){
         return (serialNumber.length() == 10);
     }
 
-    // Post-conditions: Determines if the price is in the correct format
+    // Post-conditions: Returns true if the price is the correct format
     public Boolean isCorrectPriceFormat(String price) {
         try {
+            // If the price can be parsed into a double, return true
             double priceToDouble = Double.parseDouble(price);
 
-            System.out.print(priceToDouble);
+            System.out.print("String parse: " + priceToDouble + "\n");
 
             return true;
 
         } catch (Exception e) {
+
+            // If the price could not be parsed, return false
             return false;
         }
     }
@@ -138,11 +155,12 @@ public class InventoryTrackerController {
     public ObservableList<InventoryItem> setItems(ObservableList<InventoryItem> items, String name, String number, String price) {
         InventoryItem item = new InventoryItem();
 
-        // Make sure item is the correct length
+        // Set the InventoryItem fields
         item.setItemName(name);
         item.setItemSerialNumber(number.toUpperCase());
         item.setItemPrice(price);
 
+        // Add the InventoryItem to the ObservableList, and return the ObservableList
         items.add(item);
 
         return items;
@@ -150,16 +168,15 @@ public class InventoryTrackerController {
 
     // Post-conditions: Formats the price into an acceptable currency format
     public String priceFormat(Double price) {
-
-        // turn into a correct price if it is
+        // Set the currency format
         Locale usa = new Locale("en", "US");
-        //  Currency dollars = Currency.getInstance(usa);
         NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
 
+        // Return the formatted price
         return dollarFormat.format(price);
     }
 
-    // Post-conditions: Clears all the text fields in the gui
+    // Post-conditions: Clears all the text fields in the GUI
     private void clearTextFields() {
         itemNameTextField.clear();
         itemSerialNumberTextField.clear();
@@ -168,9 +185,8 @@ public class InventoryTrackerController {
 
     // Post-conditions: Switches scene to InvalidNameController.fxml
     public String toInvalidNameController() {
-
         try {
-            // Open new stage
+            // Switch scene to InvalidNameController.fxml
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InvalidNameController.fxml")));
 
             Stage stage = new Stage();
@@ -181,16 +197,15 @@ public class InventoryTrackerController {
             return "Scene switched to Name.fxml\n";
         } catch(Exception e) {
 
-            // Catch if the stage could not be opened
+            // Catch if the scene could not be opened
             return "Scene switch unsuccessful.\n";
         }
     }
 
     // Post-conditions: Switches scene to InvalidSerialNumberController.fxml
     public String toInvalidSerialNumberController() {
-
         try {
-            // Open new stage
+            // Switch scene to InvalidSerialNumberController.fxml
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InvalidSerialNumberController.fxml")));
 
             Stage stage = new Stage();
@@ -201,16 +216,15 @@ public class InventoryTrackerController {
             return "Scene switched to InvalidSerialNumber.fxml\n";
         } catch(Exception e) {
 
-            // Catch if the stage could not be opened
+            // Catch if the scene could not be opened
             return "Scene switch unsuccessful.\n";
         }
     }
 
     // Post-conditions: Switches scene to InvalidPriceController.fxml
     public String toInvalidPriceController() {
-
         try {
-            // Open new stage
+            // Switch scene to InvalidPriceController.fxml
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InvalidPriceController.fxml")));
 
             Stage stage = new Stage();
@@ -221,16 +235,15 @@ public class InventoryTrackerController {
             return "Scene switched to InvalidPriceController.fxml\n";
         } catch(Exception e) {
 
-            // Catch if the stage could not be opened
+            // Catch if the scene could not be opened
             return "Scene switch unsuccessful.\n";
         }
     }
 
     // Post-conditions: Switches scene to DuplicateItemController.fxml
     public String toDuplicateItemController() {
-
         try {
-            // Open new stage
+            // Switch scene to DuplicateItemController.fxml
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DuplicateItemController.fxml")));
 
             Stage stage = new Stage();
@@ -244,7 +257,6 @@ public class InventoryTrackerController {
             // Catch if the stage could not be opened
             return "Scene switch unsuccessful.\n";
         }
-
     }
 
     // TODO CREATE A HELP SCREEN?
@@ -264,8 +276,10 @@ public class InventoryTrackerController {
     // Post-conditions: Loads information from a chosen file to the TableView
     @FXML
     public void loadButtonClicked() {
+        System.out.print("Load button clicked.\n");
 
-        // File chooser opens
+        // Open file chooser, set title, and set extensions
+        // TODO: FINISH OR REMOVE JSON
         Window stage = fileMenuButton.getScene().getWindow();
         fileChooser.setTitle("Load To Do List");
         fileChooser.getExtensionFilters().addAll(
@@ -275,7 +289,7 @@ public class InventoryTrackerController {
         );
 
         try {
-            // User chooses file
+            // Let user choose which file to load
             File file = fileChooser.showOpenDialog(stage);
             fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directory for the next time it opens
 
@@ -285,15 +299,19 @@ public class InventoryTrackerController {
             // Chosen file is loaded
             // TODO UNCOMMENT THESSE NEXT TWO LINES
 
+            // If the file is a .txt file
             if (file.toString().contains(".txt")) {
-
-                ArrayList<String> inventoryStrings = fileManager.loadFileStrings(file);;
+                // Parse the content and add them to the ObservableList
+                ArrayList<String> inventoryStrings = fileManager.loadFileStrings(file);
 
                 inventoryItems = fileManager.addToObservableList(inventoryStrings);
             }
 
+            // If the file is a .html file
             else if (file.toString().contains(".html")) {
+                // Parse the content and add them to the ObservableList
                 ArrayList<String> inventoryStrings = fileManager.loadHTML(file);
+
                 inventoryItems = fileManager.addToObservableListHTML(inventoryStrings);
             }
 
@@ -302,7 +320,7 @@ public class InventoryTrackerController {
             inventoryTrackerTable.setItems(inventoryItems);
         } catch (Exception e) {
 
-            // Check if file could be loaded
+            // Catch if the file could not be loaded
             System.out.print("Could not load file.\n");
         }
     }
@@ -310,28 +328,21 @@ public class InventoryTrackerController {
     // Post-conditions: Removes a selected item from the TableView
     @FXML
     public Boolean removeItemButtonClicked() {
-        System.out.print("Remove item button pressed.\n");
+        System.out.print("Remove Item button pressed.\n");
 
         try {
-            // Delete selected item from ObservableList
+            // Remove selected item from ObservableList
             inventoryItems = deleteItem(inventoryTrackerTable.getSelectionModel().getSelectedItem(), inventoryItems, serialNumbers);
 
-            // Remove selected item from gui table
+            // Update the GUI table
             inventoryTrackerTable.refresh();
             inventoryTrackerTable.setItems(inventoryItems);
 
-            // TODO: REMOVE, THIS IS JUST FOR TESTING
-            for (InventoryItem inventoryItem : inventoryItems) {
-                System.out.print(inventoryItem.getItemSerialNumber() + "\n");
-            }
-
-            System.out.print(serialNumbers + "\n");
-
             return true;
         } catch (Exception e) {
-
-            // Return false if the item was not deleted
+            // Catch if the item could not be deleted
             System.out.print("The item was not deleted.\n");
+
             return false;
         }
     }
@@ -499,7 +510,7 @@ public class InventoryTrackerController {
 
             String newPrice = event.getNewValue();
 
-            if (isDouble(newPrice)) {
+            if (isCorrectPriceFormat(newPrice)) {
                 String formatted = priceFormat(Double.parseDouble(newPrice));
                 item.setItemPrice(formatted);
             } else {
@@ -516,18 +527,5 @@ public class InventoryTrackerController {
         // Set table to update with the search text field
         searchTextField.textProperty().addListener(((observable, oldValue, newValue) ->
                 inventoryTrackerTable.setItems(filterList(inventoryItems, newValue))));
-    }
-
-    public Boolean isDouble(String checkDouble) {
-        try {
-            Double testDouble = Double.parseDouble(checkDouble);
-
-          //  System.out.print(testDouble + "\n");
-
-            return true;
-        } catch (Exception e) {
-
-            return false;
-        }
     }
 }
