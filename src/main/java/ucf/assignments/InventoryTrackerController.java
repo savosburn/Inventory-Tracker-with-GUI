@@ -291,18 +291,28 @@ public class InventoryTrackerController {
 
             // If the file is a .txt file
             if (file.toString().contains(".txt")) {
-                // Parse the content and add them to the ObservableList
+                // Clear the set
+                serialNumbers.clear();
+
+                // Parse the content
                 ArrayList<String> inventoryStrings = fileManager.loadFileStrings(file);
 
+                // Add items to the ObservableList and the Set
                 inventoryItems = fileManager.addToObservableList(inventoryStrings);
+                serialNumbers = fileManager.addToSet(inventoryItems);
             }
 
             // If the file is a .html file
             else if (file.toString().contains(".html")) {
-                // Parse the content and add them to the ObservableList
+                // Clear the set
+                serialNumbers.clear();
+
+                // Parse the content
                 ArrayList<String> inventoryStrings = fileManager.loadHTML(file);
 
+                // Add items to the ObservableList and the Set
                 inventoryItems = fileManager.addToObservableListHTML(inventoryStrings);
+                serialNumbers = fileManager.addToSet(inventoryItems);
             }
 
             // Refresh and reset the table

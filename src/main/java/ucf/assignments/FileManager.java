@@ -9,9 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class FileManager {
 
@@ -35,6 +33,20 @@ public class FileManager {
         }
 
         return tempList;
+    }
+
+    // Post-conditions: Adds items from an ObservableList to the Set
+    public Set<String> addToSet(ObservableList<InventoryItem> inventoryItems) {
+        // Create set
+        Set <String> serialNumbers = new HashSet<>();
+
+        // Add the items to the set
+        for (InventoryItem inventoryItem : inventoryItems) {
+            serialNumbers.add(inventoryItem.itemSerialNumber);
+        }
+
+        // Return the set
+        return serialNumbers;
     }
 
     // Post-conditions: Adds the strings from a .txt to an ArrayList
@@ -219,7 +231,6 @@ public class FileManager {
         return bodyString.toString();
     }
 
-    // TODO MAKE THIS RETURN A STRING
     // Post-conditions: Prints information to the .html file
     public String writeToHTMLFile(File file, String string) {
         try {
