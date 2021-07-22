@@ -84,7 +84,7 @@
                <font>
                   <Font name="Tahoma" size="13.0" />
                </font></TextField>
-            <Button fx:id="removeItemButton1" layoutX="6.0" layoutY="119.0" mnemonicParsing="false" onAction="#removeItemButtonClicked" prefHeight="30.0" prefWidth="279.0" style="-fx-background-color: #D0B49F;" text="CLEAR INVENTORY" textFill="WHITE">
+            <Button fx:id="clearInventoryButton" layoutX="6.0" layoutY="119.0" mnemonicParsing="false" onAction="#clearInventoryButtonClicked" prefHeight="30.0" prefWidth="279.0" style="-fx-background-color: #D0B49F;" text="CLEAR INVENTORY" textFill="WHITE">
                <font>
                   <Font name="Tahoma Bold" size="14.0" />
                </font>

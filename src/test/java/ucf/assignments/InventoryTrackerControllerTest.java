@@ -281,6 +281,60 @@ class InventoryTrackerControllerTest {
     }
 
     @Test
+    public void clearEntireInventoryTest() {
+        // Create objects and ObservableList
+        InventoryTrackerController inventoryTrackerController = new InventoryTrackerController();
+        ObservableList<InventoryItem> inventoryItems = FXCollections.observableArrayList();
+
+        // Add items
+        InventoryItem itemOne = new InventoryItem();
+        itemOne.setItemName("apples");
+        itemOne.setItemPrice("$3.00");
+        itemOne.setItemSerialNumber("0123456789");
+
+        InventoryItem itemTwo = new InventoryItem();
+        itemTwo.setItemName("pears");
+        itemTwo.setItemPrice("4.00");
+        itemTwo.setItemSerialNumber("01234ASDFG");
+
+        InventoryItem itemThree = new InventoryItem();
+        itemThree.setItemName("grapes");
+        itemThree.setItemPrice("1.00");
+        itemThree.setItemSerialNumber("0000000000");
+
+        inventoryItems.addAll(itemOne, itemTwo, itemThree);
+
+        // Clear all the items
+        inventoryItems = inventoryTrackerController.clearEntireInventory(inventoryItems);
+
+        // Test that the inventoryItems are now empty
+        Boolean isEmpty = inventoryItems.isEmpty();
+
+        // Check that inventoryItems is actually empty
+        assertTrue(isEmpty);
+    }
+
+    @Test
+    public void clearSerialNumSet() {
+        InventoryTrackerController inventoryTrackerController = new InventoryTrackerController();
+        Set<String> serialNums = new HashSet<>();
+
+        // Add information to the set
+        serialNums.add("0123456789");
+        serialNums.add("01234ASDFG");
+        serialNums.add("0000000000");
+
+        // Clear the set
+        serialNums = inventoryTrackerController.clearSerialNumSet(serialNums);
+
+        // Check if the set is empty
+        Boolean isEmpty = serialNums.isEmpty();
+
+        // Check that the set is actually empty
+        assertTrue(isEmpty);
+    }
+
+    @Test
     public void sortByName() {
         // nothing to test since tableview handles sorting
     }

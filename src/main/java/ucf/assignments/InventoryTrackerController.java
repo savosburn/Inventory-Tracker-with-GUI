@@ -37,6 +37,7 @@ public class InventoryTrackerController {
     @FXML private TextField itemSerialNumberTextField;
     @FXML private TextField itemNameTextField;
     @FXML private TextField searchTextField;
+    @FXML private Button clearInventoryButton;
     @FXML private Button helpButton;
 
     // Declare objects
@@ -439,6 +440,32 @@ public class InventoryTrackerController {
         return FXCollections.observableList(filteredList);
     }
 
+    // Post-conditions: Clears all content in the TableView
+    @FXML
+    public void clearInventoryButtonClicked() {
+        System.out.print("Clear Inventory button clicked.\n");
+
+        // Clear the entire inventory and the set of serial numbers
+        inventoryItems = clearEntireInventory(inventoryItems);
+        serialNumbers = clearSerialNumSet(serialNumbers);
+
+        // Refresh and update the table
+        inventoryTrackerTable.refresh();
+        inventoryTrackerTable.setItems(inventoryItems);
+    }
+
+    // Post-conditions: Returns and clears an ObservableList
+    public ObservableList<InventoryItem> clearEntireInventory(ObservableList<InventoryItem> inventory) {
+        inventory.clear();
+        return inventory;
+    }
+
+    // Post-conditions: Returns and clears a set
+    public Set<String> clearSerialNumSet(Set<String> serialNums) {
+        serialNums.clear();
+        return serialNums;
+    }
+
     // Post-conditions: initializes the TableView
     @FXML
     void initialize() {
@@ -455,6 +482,7 @@ public class InventoryTrackerController {
         assert itemSerialNumberTextField != null : "fx:id=\"itemSerialNumberTextField\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert itemNameTextField != null : "fx:id=\"itemNameTextField\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert searchTextField != null : "fx:id=\"searchTextField\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
+        assert clearInventoryButton != null : "fx:id=\"clearInventoryButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
         assert helpButton != null : "fx:id=\"helpButton\" was not injected: check your FXML file 'InventoryTrackerController.fxml'.";
 
         // Set the initial directory of the file chooser to be the user's directory

@@ -21,6 +21,7 @@ class InventoryTrackerController {
     itemSerialNumberTextField: TextField -- FXML
     itemNameTextField: TextField -- FXML
     searchTextField: TextField -- FXML
+    clearInventoryButton: Button -- FXML
 
 
     helpButton: Button -- FXML
@@ -54,6 +55,9 @@ class InventoryTrackerController {
     + saveAsButtonClicked(): Saves the items in the TableView to an external file
     - searchFindsItem(InventoryItem, String): Returns true if the user's search is in an InventoryItem
     - filterList(ObservableList<InventoryItem>, String): Adds to a filtered list if the searched item was found
+    + clearInventoryButtonClicked(): Clears all content in the TableView
+    + clearEntireInventory(ObservableList<InventoryItem>): Returns and clears an ObservableList
+    + clearSerialNumSet(Set<String>): Returns and clears a set
     + initialize(): initializes the TableView
 }
 
