@@ -219,8 +219,9 @@ public class FileManager {
         return bodyString.toString();
     }
 
+    // TODO MAKE THIS RETURN A STRING
     // Post-conditions: Prints information to the .html file
-    public Boolean writeToHTMLFile(File file, String string) {
+    public String writeToHTMLFile(File file, String string) {
         try {
             // Write the information to the file, then close the file
             PrintWriter writer = new PrintWriter(file);
@@ -228,12 +229,12 @@ public class FileManager {
             writer.write(string);
             writer.close();
 
-            return true;
+            return string;
 
         } catch (IOException e) {
             // Catch if the file does not exist and return null
             System.out.print("File does not exist.\n");
-            return false;
+            return null;
         }
     }
 }

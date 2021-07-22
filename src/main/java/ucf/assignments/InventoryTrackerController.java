@@ -393,7 +393,7 @@ public class InventoryTrackerController {
             else if (file.toString().contains(".html")) {
                 // Create the .html string and print it to a file
                 String printString = fileManager.generateHeader(file, saveList);
-                Boolean printed = fileManager.writeToHTMLFile(file, printString);
+                String printed = fileManager.writeToHTMLFile(file, printString);
 
                 System.out.print(printed);
             }
