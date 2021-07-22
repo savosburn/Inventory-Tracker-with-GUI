@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,6 +57,44 @@ class FileManagerTest {
             assertEquals(expected.get(i).itemPrice, result.get(i).itemPrice);
             assertEquals(expected.get(i).itemSerialNumber, result.get(i).itemSerialNumber);
         }
+    }
+
+    @Test
+    public void addToSetTest() {
+        // Create FileManager object
+        FileManager fileManager = new FileManager();
+        ObservableList<InventoryItem> inventoryItems = FXCollections.observableArrayList();
+        Set<String> expected = new HashSet<>();
+        Set<String> actual = new HashSet<>();
+
+        // Add information to the lists
+        InventoryItem itemOne = new InventoryItem();
+        itemOne.setItemName("apples");
+        itemOne.setItemPrice("$3.00");
+        itemOne.setItemSerialNumber("0123456789");
+
+        InventoryItem itemTwo = new InventoryItem();
+        itemTwo.setItemName("pears");
+        itemTwo.setItemPrice("$4.00");
+        itemTwo.setItemSerialNumber("01234ASDFG");
+
+        InventoryItem itemThree = new InventoryItem();
+        itemThree.setItemName("grapes");
+        itemThree.setItemPrice("$1.00");
+        itemThree.setItemSerialNumber("0000000000");
+
+        inventoryItems.addAll(itemOne, itemTwo, itemThree);
+
+        // Create the expected set
+        expected.add("0123456789");
+        expected.add("01234ASDFG");
+        expected.add("0000000000");
+
+        // Get the actual set
+        actual = fileManager.addToSet(inventoryItems);
+
+        // Check that the sets are equal
+        assertEquals(expected, actual);
     }
 
     @Test
