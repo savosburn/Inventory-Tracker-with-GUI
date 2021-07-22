@@ -289,9 +289,6 @@ public class InventoryTrackerController {
             // Clear ObservableList to load new ObservableList
             inventoryItems.clear();
 
-            // Chosen file is loaded
-            // TODO UNCOMMENT THESSE NEXT TWO LINES
-
             // If the file is a .txt file
             if (file.toString().contains(".txt")) {
                 // Parse the content and add them to the ObservableList
