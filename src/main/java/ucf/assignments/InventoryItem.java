@@ -10,13 +10,7 @@ public class InventoryItem {
     String itemName;
     String itemSerialNumber;
     String itemPrice;
-
-    public InventoryItem(String itemName, String itemSerialNumber, String itemPrice) {
-        this.itemName = itemName;
-        this.itemSerialNumber = itemSerialNumber;
-        this.itemPrice = itemPrice;
-    }
-
+    
     public InventoryItem() {
 
     }

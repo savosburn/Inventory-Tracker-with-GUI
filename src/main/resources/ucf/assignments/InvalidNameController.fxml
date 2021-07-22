@@ -18,22 +18,22 @@
             </ImageView>
               <Button fx:id="okButton" layoutX="177.0" layoutY="204.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #d0b49f;" text="OK" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="Tahoma Bold" size="21.0" />
                </font>
             </Button>
               <Text fill="#d0b49f" layoutX="10.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter a name between 2 and 256 characters.">
                   <font>
-                      <Font name="System Bold" size="18.0" />
+                      <Font name="Tahoma Bold" size="17.0" />
                   </font>
               </Text>
               <Text fill="#d0b49f" layoutX="107.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID NAME">
                   <font>
-                      <Font name="System Bold" size="33.0" />
+                      <Font name="Tahoma Bold" size="33.0" />
                   </font>
               </Text>
               <Text fill="#d0b49f" layoutX="17.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your item name is too short or too long.">
                   <font>
-                      <Font name="System Bold" size="22.0" />
+                      <Font name="Tahoma Bold" size="21.0" />
                   </font>
               </Text>
          </children>

@@ -5,22 +5,13 @@
 
 package ucf.assignments;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class DuplicateItemController {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button okButton;
+    @FXML private Button okButton;
 
     // Post-conditions: Returns scene to InventoryTrackerController.fxml
     @FXML
@@ -41,9 +32,9 @@ public class DuplicateItemController {
         }
     }
 
-    // Post-conditions: Initializes the button to null
+    // Post-conditions: Initializes the button
     @FXML
-    void initialize() {
+    public void initialize() {
         assert okButton != null : "fx:id=\"okButton\" was not injected: check your FXML file 'duplicateItemController.fxml'.";
     }
 }

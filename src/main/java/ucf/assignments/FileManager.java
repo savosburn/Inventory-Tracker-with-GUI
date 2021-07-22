@@ -19,22 +19,18 @@ public class FileManager {
     public ObservableList<InventoryItem> addToObservableList(ArrayList<String> items) {
         ObservableList<InventoryItem> tempList = FXCollections.observableArrayList();
 
-        // Iterate through every object string
+        // Iterate through every string in the ArrayList
         for (String item : items) {
-
             // Parse each string
             String[] parsedString = parseStrings(item);
 
-            System.out.print(parsedString[0]);
-            System.out.print(parsedString[1]);
-            System.out.print(parsedString[2]);
-
-            // Add the string to the observablelist
+            // Set the strings to an InventoryItem
             InventoryItem inventory = new InventoryItem();
             inventory.setItemName(parsedString[0]);
             inventory.setItemSerialNumber(parsedString[1].toUpperCase());
             inventory.setItemPrice(parsedString[2]);
 
+            // Add the InventoryItem to an ObservableList
             tempList.add(inventory);
         }
 
@@ -51,7 +47,7 @@ public class FileManager {
             File myFile = new File(file.getName());
             Scanner scanner = new Scanner(myFile);
 
-            // Each line holds one object
+            // Each line holds one object to add to the ArrayList
             while (scanner.hasNextLine()) {
                 items.add(scanner.nextLine());
             }
@@ -71,30 +67,33 @@ public class FileManager {
         return item.split("\t");
     }
 
-    // Post-conditions:
+    // Post-conditions: Adds the strings from a .html to an ArrayList
     public ArrayList<String> loadHTML(File file) {
         ArrayList<String> inventory = new ArrayList<>();
 
         try {
+            // Get the file and make it readable
             File myFile = new File(file.getName());
             Scanner scanner = new Scanner(myFile);
 
+            // Start the scanner where the body of the .html file starts
             startScanner(scanner);
 
+            // While there is still a line to scan
             while (scanner.hasNextLine()) {
                 String nextLine = scanner.nextLine();
 
+                // If it's not the end of the body
                 if (!nextLine.equals("\t</body>") && !nextLine.equals("</html>")) {
+                    // Add the scanned in line to the ArrayList
                     inventory.add(nextLine);
                 }
             }
 
-            for (String s : inventory) {
-                System.out.print(s + "\n");
-            }
             return inventory;
 
         } catch (Exception e) {
+            // Catch if the file could not be loaded and return null
             System.out.print("Could not load file.\n");
             return null;
         }
@@ -124,12 +123,7 @@ public class FileManager {
             // Parse each string
             String[] parsedString = parseHTMLStrings(item);
 
-            System.out.print(parsedString[0]);
-            System.out.print(parsedString[1].toUpperCase());
-            System.out.print(parsedString[2]);
-
-            // Add the string to the observablelist
-
+            // Use the parsed string to fill in the fields of the InventoryItem and then add to the ObservableList
             InventoryItem inventory = new InventoryItem();
             inventory.setItemName(parsedString[0]);
             inventory.setItemSerialNumber(parsedString[1].toUpperCase());
@@ -151,10 +145,10 @@ public class FileManager {
         StringBuilder outputString = new StringBuilder(" ");
 
         try(FileWriter writer = new FileWriter(file)) {
-
-            // Add all the objects to the list with \t to separate the items in each object
+            // For each item in the list
             for (InventoryItem item : items) {
 
+                // Write the item's contents to the file
                 writer.write(item.itemName + "\t");
                 writer.write(item.itemSerialNumber.toUpperCase() + "\t");
                 writer.write(item.itemPrice + "\t");
@@ -212,8 +206,9 @@ public class FileManager {
         StringBuilder bodyString = new StringBuilder();
         bodyString.append("\t<body>\n");
 
+        // For each item in the list
         for (InventoryItem item : items) {
-
+            // Add the information to a string
             bodyString.append(item.itemName).append("&emsp;");
             bodyString.append(item.itemSerialNumber.toUpperCase()).append("&emsp;");
             bodyString.append(item.itemPrice).append("&emsp;").append("<br>\n");
@@ -227,6 +222,7 @@ public class FileManager {
     // Post-conditions: Prints information to the .html file
     public Boolean writeToHTMLFile(File file, String string) {
         try {
+            // Write the information to the file, then close the file
             PrintWriter writer = new PrintWriter(file);
 
             writer.write(string);
@@ -235,6 +231,7 @@ public class FileManager {
             return true;
 
         } catch (IOException e) {
+            // Catch if the file does not exist and return null
             System.out.print("File does not exist.\n");
             return false;
         }

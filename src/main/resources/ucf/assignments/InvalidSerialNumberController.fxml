@@ -18,32 +18,32 @@
             </ImageView>
               <Button fx:id="okButton" layoutX="188.0" layoutY="212.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="45.0" prefWidth="78.0" style="-fx-background-color: #d0b49f;" text="OK" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="Tahoma Bold" size="24.0" />
                </font>
             </Button>
-              <Text fill="#d0b49f" layoutX="83.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please re-enter the serial number.">
+              <Text fill="#d0b49f" layoutX="67.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please re-enter the serial number.">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Tahoma Bold" size="19.0" />
                </font>
             </Text>
-              <Text fill="#d0b49f" layoutX="43.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" must contain ONLY letters and numbers.">
+              <Text fill="#d0b49f" layoutX="23.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" must contain ONLY letters and numbers.">
                <font>
-                  <Font name="System Bold" size="19.0" />
+                  <Font name="Tahoma Bold" size="20.0" />
                </font>
             </Text>
               <Text fill="#d0b49f" layoutX="202.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AND">
                <font>
-                  <Font name="System Bold" size="22.0" />
+                  <Font name="Tahoma Bold" size="22.0" />
                </font>
             </Text>
-              <Text fill="#d0b49f" layoutX="31.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The serial number must be 10 characters long.">
+              <Text fill="#d0b49f" layoutX="20.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The serial number must be 10 characters long.">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Tahoma Bold" size="18.0" />
                </font>
             </Text>
-              <Text fill="#d0b49f" layoutX="26.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID SERIAL NUMBER">
+              <Text fill="#d0b49f" layoutX="13.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID SERIAL NUMBER">
                <font>
-                  <Font name="System Bold" size="33.0" />
+                  <Font name="Tahoma Bold" size="33.0" />
                </font>
             </Text>
          </children>

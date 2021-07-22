@@ -6,7 +6,6 @@
 package ucf.assignments;
 
 import java.io.File;
-import java.net.URL;
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -24,12 +23,6 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class InventoryTrackerController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML private TableView<InventoryItem> inventoryTrackerTable;
     @FXML private TableColumn<InventoryItem, String> itemColumn;
@@ -194,7 +187,7 @@ public class InventoryTrackerController {
             stage.setTitle("Invalid Name");
             stage.show();
 
-            return "Scene switched to Name.fxml\n";
+            return "Scene switched to InvalidNameController.fxml\n";
         } catch(Exception e) {
 
             // Catch if the scene could not be opened
@@ -351,10 +344,10 @@ public class InventoryTrackerController {
     public ObservableList<InventoryItem> deleteItem(InventoryItem item, ObservableList<InventoryItem> inventoryTracker, Set<String> serialNum) {
         System.out.printf("Item number %s deleted from Inventory Tracker.\n", item.itemSerialNumber);
 
-        // Remove from set
+        // Remove item from the set
         serialNum.remove(item.itemSerialNumber);
 
-        // Set everything to null, then remove
+        // Set the InventoryItem fields to null, and remove the item from the inventory tracker
         item = setToNull(item);
         inventoryTracker.remove(item);
 
@@ -372,7 +365,10 @@ public class InventoryTrackerController {
 
     // Post-conditions: Saves the items in the TableView to an external file
     @FXML
-    void saveAsButtonClicked() {
+    public void saveAsButtonClicked() {
+        System.out.print("Save as... button clicked.\n");
+
+        // Open the FileChooser and set the extensions
         Window stage = fileMenuButton.getScene().getWindow();
         fileChooser.setTitle("Save Dialog");
         fileChooser.setInitialFileName("New File");
@@ -383,32 +379,36 @@ public class InventoryTrackerController {
         );
 
         try {
-            // Let user name the file to save
+            // Let user name the file to save and save the chosen directory for the next time it opens
             File file = fileChooser.showSaveDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile());
 
-            // Save the chosen directory for the next time it opens
-            fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directory
+            // Change the list type of the items
             List<InventoryItem> saveList = fileManager.observableToList(inventoryItems);
 
-
-            // TODO SAVE THE FILE
+            // If the user chooses .txt
             if (file.toString().contains(".txt")) {
+                // Save to a .txt
                 System.out.print(fileManager.saveToTXT(file, saveList));
             }
 
+            // If the user chooses .html
             else if (file.toString().contains(".html")) {
+                // Create the .html string and print it to a file
                 String printString = fileManager.generateHeader(file, saveList);
                 Boolean printed = fileManager.writeToHTMLFile(file, printString);
+
                 System.out.print(printed);
             }
 
         } catch (Exception e) {
-            System.out.print("File could not be opened.\n");
+            // Catch if the file cannot be saved
+            System.out.print("File could not be saved.\n");
         }
 
     }
 
-    // Post-condition: Determines if the user's search is in an InventoryItem
+    // Post-condition: Returns true if the user's search is in an InventoryItem
     private boolean searchFindsItem(InventoryItem item, String searchText) {
         return (item.getItemName().toLowerCase().contains(searchText.toLowerCase())) ||
                 (item.getItemSerialNumber().toLowerCase().contains(searchText.toLowerCase())) ||
@@ -417,11 +417,18 @@ public class InventoryTrackerController {
 
     // Post-conditions: Adds to a filtered list if the searched item was found
     private ObservableList<InventoryItem> filterList(ObservableList<InventoryItem> items, String searchText) {
+        // Create a list
         List <InventoryItem> filteredList = new ArrayList<>();
+
+        // Loop through every item in the ObservableList
         for (InventoryItem item : items) {
-            if (searchFindsItem(item, searchText)) filteredList.add(item);
+            // If the search is found in the item, add it to the new list
+            if (searchFindsItem(item, searchText)) {
+                filteredList.add(item);
+            }
         }
 
+        // Return as an ObservableList
         return FXCollections.observableList(filteredList);
     }
 
@@ -446,11 +453,8 @@ public class InventoryTrackerController {
         // Set the initial directory of the file chooser to be the user's directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 
-        // Set new table placeholder
+        // Set new table placeholder and update the table
         inventoryTrackerTable.setPlaceholder(new Label("Nothing in inventory."));
-
-
-        // Set the items in the inventory tracker
         inventoryTrackerTable.setItems(inventoryItems);
 
         // Set itemColumn to editable text fields
@@ -458,65 +462,88 @@ public class InventoryTrackerController {
         itemColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         itemColumn.setOnEditCommit(event -> {
             InventoryItem item = event.getRowValue();
-            item.setItemName(event.getNewValue());
+
+            // Get the old and new values
+            String originalName = event.getOldValue();
+            String newName = event.getNewValue();
+
+            // If the name is the correct length
+            if (isCorrectNameLength(newName.length())) {
+                // Set the table with the new name
+                item.setItemName(newName);
+            }
+
+            // If the name is not the correct length
+            else {
+                // Set the table with the original name and display an error message
+                item.setItemName(originalName);
+                System.out.print(toInvalidNameController());
+            }
+
+            // Update and refresh the table
+            inventoryTrackerTable.refresh();
+            inventoryTrackerTable.setItems(inventoryItems);
         });
 
-        inventoryTrackerTable.refresh();
-        inventoryTrackerTable.setItems(inventoryItems);
-
-        // Set serial number column
+        // Set serialNumberColumn to editable text fields
         serialNumberColumn.setCellValueFactory(new PropertyValueFactory<>("itemSerialNumber"));
         serialNumberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         serialNumberColumn.setOnEditCommit(event -> {
             InventoryItem item = event.getRowValue();
 
-            // Get the serial number
+            // Get original and new serial numbers
             String oldNum = item.itemSerialNumber;
             String num = event.getNewValue();
 
-            // If it's valid
+            // If the new serial number is the correct length and format
             if (isCorrectSerialNumberLength(num) && isCorrectSerialNumberFormat(num)) {
 
-                // If it's not already in the set
+                // And if it is not already in the set
                 if (!alreadyInSet(serialNumbers, num, inventoryItems)) {
-                    // set it
+                    // Set the new serial number and update the lists
                     serialNumbers.remove(oldNum);
                     serialNumbers.add(num.toUpperCase());
                     item.setItemSerialNumber(event.getNewValue().toUpperCase());
                 }
-                // else
+
+                // If it is already in the set
                 else {
+                    // Keep the original value and display an error scene
                     item.setItemSerialNumber(oldNum.toUpperCase());
                     System.out.print(toDuplicateItemController());
                 }
             }
 
-            // Else
+            // If the serial number is an incorrect length and/or format
             else {
-                // Bring up an error screen
+                // Display an error scene
                 System.out.print(toInvalidSerialNumberController());
-
             }
+
+            // Refresh and reset the table
             inventoryTrackerTable.refresh();
             inventoryTrackerTable.setItems(inventoryItems);
         });
 
+        // Set the priceColumn to editable text fields
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("itemPrice"));
         priceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         priceColumn.setOnEditCommit(event -> {
+            // Get the user's new value
             InventoryItem item = event.getRowValue();
-
-            // Make sure it's a valid double
-
             String newPrice = event.getNewValue();
 
+            // If the price is a valid number
             if (isCorrectPriceFormat(newPrice)) {
+                // Set the price in the table as a formatted currency amount
                 String formatted = priceFormat(Double.parseDouble(newPrice));
                 item.setItemPrice(formatted);
-            } else {
+            }
 
+            // If the price is not a valid number
+            else {
+                // Display an error scene
                 System.out.print(toInvalidPriceController());
-
             }
 
             // Refresh and reset the table

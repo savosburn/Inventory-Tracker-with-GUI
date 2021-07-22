@@ -5,19 +5,11 @@
 
 package ucf.assignments;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class InvalidNameController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button okButton;
@@ -42,7 +34,7 @@ public class InvalidNameController {
 
     // Post-conditions: Initializes the button
     @FXML
-    void initialize() {
+    public void initialize() {
         assert okButton != null : "fx:id=\"okButton\" was not injected: check your FXML file 'invalidNameController.fxml'.";
     }
 }

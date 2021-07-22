@@ -5,27 +5,17 @@
 
 package ucf.assignments;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class InvalidPriceController {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
     @FXML private Button okButton;
 
     // Post-conditions: Returns scene to InventoryTrackerController.fxml
     @FXML
-    public String okButtonPressed(ActionEvent event) {
-
+    public String okButtonPressed() {
         try {
             // Close scene to return to ToDoList controller that is still open in the background
             Stage curStage = (Stage)okButton.getScene().getWindow();
@@ -39,13 +29,11 @@ public class InvalidPriceController {
             System.out.print("Scene switch unsuccessful.\n");
             return "Scene switch unsuccessful.\n";
         }
-
     }
 
     // Post-conditions: Initializes the button
     @FXML
-    void initialize() {
+    public void initialize() {
         assert okButton != null : "fx:id=\"okButton\" was not injected: check your FXML file 'InvalidPriceController.fxml'.";
-
     }
 }

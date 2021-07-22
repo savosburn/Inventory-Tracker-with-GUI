@@ -18,22 +18,22 @@
             </ImageView>
               <Button fx:id="okButton" layoutX="184.0" layoutY="193.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="54.0" prefWidth="85.0" style="-fx-background-color: #D0B49F;" text="OK" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="25.0" />
+                  <Font name="Tahoma Bold" size="24.0" />
                </font>
             </Button>
               <Text fill="#d0b49f" layoutX="95.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DUPLICATE ITEM">
                <font>
-                  <Font name="System Bold" size="33.0" />
+                  <Font name="Tahoma Bold" size="33.0" />
                </font>
             </Text>
               <Text fill="#d0b49f" layoutX="48.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This item is already in the inventory.">
                <font>
-                  <Font name="System Bold" size="21.0" />
+                  <Font name="Tahoma Bold" size="20.0" />
                </font>
             </Text>
               <Text fill="#d0b49f" layoutX="85.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please add a different item.">
                <font>
-                  <Font name="System Bold" size="22.0" />
+                  <Font name="Tahoma Bold" size="21.0" />
                </font>
             </Text>
          </children>
