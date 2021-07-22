@@ -406,14 +406,14 @@ public class InventoryTrackerController {
     }
 
     // Post-condition: Returns true if the user's search is in an InventoryItem
-    private boolean searchFindsItem(InventoryItem item, String searchText) {
+    public boolean searchFindsItem(InventoryItem item, String searchText) {
         return (item.getItemName().toLowerCase().contains(searchText.toLowerCase())) ||
                 (item.getItemSerialNumber().toLowerCase().contains(searchText.toLowerCase())) ||
                 (item.getItemPrice().toLowerCase().contains(searchText.toLowerCase()));
     }
 
     // Post-conditions: Adds to a filtered list if the searched item was found
-    private ObservableList<InventoryItem> filterList(ObservableList<InventoryItem> items, String searchText) {
+    public ObservableList<InventoryItem> filterList(ObservableList<InventoryItem> items, String searchText) {
         // Create a list
         List <InventoryItem> filteredList = new ArrayList<>();
 
