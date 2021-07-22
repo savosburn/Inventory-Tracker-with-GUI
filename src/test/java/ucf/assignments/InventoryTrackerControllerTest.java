@@ -17,6 +17,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class InventoryTrackerControllerTest {
 
     @Test
+    public void canStoreAtLeastOneHundredItemsTest() {
+        // Create ObservableList
+        ObservableList<InventoryItem> inventoryItems = FXCollections.observableArrayList();
+
+        // Create the item to store
+        InventoryItem itemOne = new InventoryItem();
+        itemOne.setItemName("apples");
+        itemOne.setItemPrice("$3.00");
+        itemOne.setItemSerialNumber("0123456789");
+
+        // Add it to the set 101 times
+        for (int i = 0;i < 101; i++) {
+            inventoryItems.add(itemOne);
+        }
+
+        // Check that the ObservableList holds over 100 items
+        assertEquals(101, inventoryItems.size());
+    }
+
+    @Test
     public void alreadyInSetTest() {
 
         // Create controller object
