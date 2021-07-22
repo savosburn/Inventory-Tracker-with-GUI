@@ -20,6 +20,152 @@ import static org.junit.jupiter.api.Assertions.*;
 class FileManagerTest {
 
     @Test
+    public void toJsonTest() {
+        // Create objects and lists
+        FileManager fileManager = new FileManager();
+        List<InventoryItem> inventoryItems = new ArrayList<>();
+
+        // Add information to the list
+        InventoryItem itemOne = new InventoryItem();
+        itemOne.setItemName("apples");
+        itemOne.setItemPrice("$3.00");
+        itemOne.setItemSerialNumber("0123456789");
+
+        InventoryItem itemTwo = new InventoryItem();
+        itemTwo.setItemName("pears");
+        itemTwo.setItemPrice("$4.00");
+        itemTwo.setItemSerialNumber("01234ASDFG");
+
+        InventoryItem itemThree = new InventoryItem();
+        itemThree.setItemName("grapes");
+        itemThree.setItemPrice("$1.00");
+        itemThree.setItemSerialNumber("0000000000");
+
+        inventoryItems.add(itemOne);
+        inventoryItems.add(itemTwo);
+        inventoryItems.add(itemThree);
+
+        // Create expected string
+        String expected = """
+                [
+                  {
+                    "itemName": "apples",
+                    "itemSerialNumber": "0123456789",
+                    "itemPrice": "$3.00"
+                  },
+                  {
+                    "itemName": "pears",
+                    "itemSerialNumber": "01234ASDFG",
+                    "itemPrice": "$4.00"
+                  },
+                  {
+                    "itemName": "grapes",
+                    "itemSerialNumber": "0000000000",
+                    "itemPrice": "$1.00"
+                  }
+                ]""";
+
+        // Get the actual string
+        String actual = fileManager.toJSON(inventoryItems);
+
+        // Check that the two strings are equal
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void saveToJSONFile() {
+        // Create objects, files, and strings
+        FileManager fileManager = new FileManager();
+        File file = new File("JSONInputTest.json");
+
+        // Create a string to save to the file
+        String jsonString =  """
+                [
+                  {
+                    "itemName": "apples",
+                    "itemSerialNumber": "0123456789",
+                    "itemPrice": "$3.00"
+                  },
+                  {
+                    "itemName": "pears",
+                    "itemSerialNumber": "01234ASDFG",
+                    "itemPrice": "$4.00"
+                  },
+                  {
+                    "itemName": "grapes",
+                    "itemSerialNumber": "0000000000",
+                    "itemPrice": "$1.00"
+                  }
+                ]""";
+
+        // Create the expected output
+        String expected =  """
+                [
+                  {
+                    "itemName": "apples",
+                    "itemSerialNumber": "0123456789",
+                    "itemPrice": "$3.00"
+                  },
+                  {
+                    "itemName": "pears",
+                    "itemSerialNumber": "01234ASDFG",
+                    "itemPrice": "$4.00"
+                  },
+                  {
+                    "itemName": "grapes",
+                    "itemSerialNumber": "0000000000",
+                    "itemPrice": "$1.00"
+                  }
+                ]""";
+
+        // Get the actual string
+        String actual = fileManager.saveToJSONFile(jsonString, file);
+
+        // Check that the two are equal
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void fromJSON() {
+        // Create objects, files, and lists
+        FileManager fileManager = new FileManager();
+        File file = new File("JsonInput.json");
+        List<InventoryItem> expected = new ArrayList<>();
+        List<InventoryItem> actual = new ArrayList<>();
+
+        // Fill the expected list with information
+        InventoryItem itemOne = new InventoryItem();
+        itemOne.setItemName("Couches");
+        itemOne.setItemPrice("$10,851.00");
+        itemOne.setItemSerialNumber("1526CO15KL");
+
+        InventoryItem itemTwo = new InventoryItem();
+        itemTwo.setItemName("Dining Table");
+        itemTwo.setItemPrice("$567.51");
+        itemTwo.setItemSerialNumber("DT1515H7F4");
+
+        InventoryItem itemThree = new InventoryItem();
+        itemThree.setItemName("Bed");
+        itemThree.setItemPrice("$710.00");
+        itemThree.setItemSerialNumber("BD17SJ6N89");
+
+        expected.add(itemOne);
+        expected.add(itemTwo);
+        expected.add(itemThree);
+
+        // Get the actual list
+        actual = fileManager.fromJSON(file);
+
+        // Check that the two are equal
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(expected.get(i).itemName, actual.get(i).itemName);
+            assertEquals(expected.get(i).itemPrice, actual.get(i).itemPrice);
+            assertEquals(expected.get(i).itemSerialNumber, actual.get(i).itemSerialNumber);
+        }
+    }
+
+    @Test
     public void addToObservableList() {
         // Create objects and lists
         FileManager fileManager = new FileManager();

@@ -5,13 +5,59 @@
 
 package ucf.assignments;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.*;
 
 public class FileManager {
+
+    // Post-conditions: Converts a list to JSON
+    public String toJSON(List<InventoryItem> inventoryItems) {
+        // Create gson object
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        // Create the json string
+        return gson.toJson(inventoryItems);
+    }
+
+    // Post-conditions: Saves a JSON string to a JSON file
+    public String saveToJSONFile(String json, File file) {
+        try (FileWriter writer = new FileWriter(file)) {
+
+            // Write to the file and return the string
+            writer.write(json);
+
+            return json;
+
+        } catch (Exception e) {
+            // Check if the file could not be written to
+            System.out.print("Could not save to .json file.\n");
+            return null;
+        }
+    }
+
+    // Post-conditions: Converts a JSON string to an object
+    public List<InventoryItem> fromJSON(File file) {
+        Gson gson = new Gson();
+
+       try (FileReader fr = new FileReader(file)) {
+
+            Type list = new TypeToken<List<InventoryItem>>(){}.getType();
+        ///return gson.fromJson(fr, InventoryItem.class);
+        return gson.fromJson(fr, list);
+
+        } catch (Exception e) {
+            System.out.print("Could not load file.\n");
+
+            return null;
+        }
+    }
 
     // Post-conditions: Parses the strings in the ArrayList and returns them as an ObservableList
     public ObservableList<InventoryItem> addToObservableList(ArrayList<String> items) {
@@ -19,6 +65,7 @@ public class FileManager {
 
         // Iterate through every string in the ArrayList
         for (String item : items) {
+
             // Parse each string
             String[] parsedString = parseStrings(item);
 

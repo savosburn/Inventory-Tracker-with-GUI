@@ -1,0 +1,17 @@
+[
+  {
+    "itemName": "apples",
+    "itemSerialNumber": "0123456789",
+    "itemPrice": "$3.00"
+  },
+  {
+    "itemName": "pears",
+    "itemSerialNumber": "01234ASDFG",
+    "itemPrice": "$4.00"
+  },
+  {
+    "itemName": "grapes",
+    "itemSerialNumber": "0000000000",
+    "itemPrice": "$1.00"
+  }
+]

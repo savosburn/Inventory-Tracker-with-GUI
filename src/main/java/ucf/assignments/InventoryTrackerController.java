@@ -275,7 +275,7 @@ public class InventoryTrackerController {
         // Open file chooser, set title, and set extensions
         // TODO: FINISH OR REMOVE JSON
         Window stage = fileMenuButton.getScene().getWindow();
-        fileChooser.setTitle("Load To Do List");
+        fileChooser.setTitle("Load Inventory");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("TSV (Text) File", "*.txt"),
                 new FileChooser.ExtensionFilter("JSON File", "*.json"),
@@ -283,6 +283,7 @@ public class InventoryTrackerController {
         );
 
         try {
+
             // Let user choose which file to load
             File file = fileChooser.showOpenDialog(stage);
             fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directory for the next time it opens
@@ -316,11 +317,22 @@ public class InventoryTrackerController {
                 serialNumbers = fileManager.addToSet(inventoryItems);
             }
 
+            else if (file.toString().contains(".json")) {
+                // Clear the set
+                serialNumbers.clear();
+
+                // Parse the content
+                List<InventoryItem> inventory = fileManager.fromJSON(file);
+
+                // Update the Lists
+                inventoryItems = FXCollections.observableArrayList(inventory);
+                serialNumbers = fileManager.addToSet(inventoryItems);
+            }
+
             // Refresh and reset the table
             inventoryTrackerTable.refresh();
             inventoryTrackerTable.setItems(inventoryItems);
         } catch (Exception e) {
-
             // Catch if the file could not be loaded
             System.out.print("Could not load file.\n");
         }
@@ -407,6 +419,14 @@ public class InventoryTrackerController {
                 String printed = fileManager.writeToHTMLFile(file, printString);
 
                 System.out.print(printed);
+            }
+
+            else if (file.toString().contains(".json")) {
+                List<InventoryItem> inventory = fileManager.observableToList(inventoryItems);
+                String json = fileManager.toJSON(inventory);
+                String output = fileManager.saveToJSONFile(json, file);
+
+                System.out.print(output);
             }
 
         } catch (Exception e) {

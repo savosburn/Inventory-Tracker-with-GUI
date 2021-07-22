@@ -104,6 +104,9 @@ class InvalidSerialNumberController {
 }
 
 class FileManager {
+    + toJson(List<InventoryItem>): Converts a list to JSON
+    + saveToJSONFile(String, File): Saves a JSON string to a JSON file
+    + fromJSON(File): Converts a JSON string to an object
     + addToObservableList(ArrayList<String>): Parses the strings in the ArrayList and returns them as an ObservableList
     + addToSet(ObservableList<InventoryItem>): Adds items from an ObservableList to the Set
     + loadFileStrings(File): Adds the strings from a .txt to an ArrayList
