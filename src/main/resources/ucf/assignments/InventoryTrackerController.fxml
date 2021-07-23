@@ -73,8 +73,8 @@
               <TableView fx:id="inventoryTrackerTable" editable="true" layoutX="294.0" layoutY="119.0" prefHeight="389.0" prefWidth="526.0" style="-fx-background-color: #D0B49F;">
                   <columns>
                       <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="108.79996337890623" style="-fx-background-color: #D0B49F;" text="Price" />
-                      <TableColumn fx:id="serialNumberColumn" prefWidth="190.4000244140625" style="-fx-background-color: #D0B49F;" text="Serial Number" />
-                      <TableColumn fx:id="itemColumn" prefWidth="224.800048828125" style="-fx-background-color: #D0B49F;" text="Item" />
+                      <TableColumn fx:id="serialNumberColumn" prefWidth="190.4000244140625" style="-fx-background-color:  #D0B49F;" text="Serial Number" />
+                      <TableColumn fx:id="itemColumn" prefWidth="224.800048828125" style="-fx-background-color:  #D0B49F;" text="Item" />
                   </columns>
                   <cursor>
                       <Cursor fx:constant="HAND" />
