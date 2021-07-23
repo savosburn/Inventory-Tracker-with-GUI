@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ucf.assignments.HelpControllerSearch">
+   <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+      <Image url="@../Images/BackgroundImage.jpg"/>
+   </ImageView>
+   <Text fill="#b49b8a" layoutX="136.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP: Search Items">
+      <font>
+         <Font name="Tahoma Bold" size="33.0"/>
+      </font>
+   </Text>
+   <Button fx:id="returnButton" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#returnButtonPressed"
+           style="-fx-background-color: #d0b49f;" text="X" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="22.0"/>
+      </font>
+   </Button>
+   <Button fx:id="nextButton" layoutX="526.0" layoutY="354.0" mnemonicParsing="false" onAction="#nextButtonPressed"
+           style="-fx-background-color: #d0b49f;" text="Next" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="16.0"/>
+      </font>
+   </Button>
+   <Button fx:id="backButton" layoutX="14.0" layoutY="354.0" mnemonicParsing="false" onAction="#backButtonPressed"
+           style="-fx-background-color: #d0b49f;" text="Back" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="16.0"/>
+      </font>
+   </Button>
+   <Text fill="#d0b49f" layoutX="276.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5 | 6">
+      <font>
+         <Font name="Tahoma Bold" size="19.0"/>
+      </font>
+   </Text>
+   <Text fill="#b49b8a" layoutX="161.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="To search items in the table:">
+      <font>
+         <Font name="Tahoma" size="22.0"/>
+      </font>
+   </Text>
+   <Text fill="#b49b8a" layoutX="149.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Type in data in the Search bar.">
+      <font>
+         <Font name="Tahoma" size="22.0"/>
+      </font>
+   </Text>
+   <ImageView fitHeight="115.0" fitWidth="472.0" layoutX="64.0" layoutY="127.0" pickOnBounds="true"
+              preserveRatio="true">
+      <Image url="@../Images/searchItems.png"/>
+   </ImageView>
+   <Text fill="#3e2a2a" layoutX="74.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🠕">
+      <font>
+         <Font name="Tahoma Bold" size="80.0"/>
+      </font>
+   </Text>
+</AnchorPane>

@@ -14,22 +14,22 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class HelpController {
+public class HelpControllerEditItems {
 
-    @FXML private Button nextButton;
     @FXML private Button returnButton;
+    @FXML private Button backButton;
+    @FXML private Button nextButton;
 
-    // Post-condition: Scene is switched to next help screen
+    // Post-conditions: Switch scene to previous controller
     @FXML
-    public String nextButtonPressed() {
-
+    public String backButtonPressed() {
         try {
 
             // Close current stage
-            Stage curStage = (Stage)nextButton.getScene().getWindow();
+            Stage curStage = (Stage)backButton.getScene().getWindow();
             curStage.close();
 
-            // Open next stage
+            // Open previous stage
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpControllerDeletingItems.fxml")));
 
             Stage stage = new Stage();
@@ -41,7 +41,36 @@ public class HelpController {
             return "Scene switched to HelpControllerDeletingItems.fxml\n";
         } catch(Exception e) {
 
-            // Check if the scene change was unsuccessful
+            // Check if scene could not be switched
+            System.out.print("Scene switch unsuccessful.\n");
+            return "Scene switch unsuccessful.\n";
+        }
+
+    }
+
+    // Post-conditions: Switch scene to next controller
+    @FXML
+    public String nextButtonPressed() {
+
+        try {
+
+            // Close current stage
+            Stage curStage = (Stage)nextButton.getScene().getWindow();
+            curStage.close();
+
+            // Open previous scene
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpControllerFiles.fxml")));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Help");
+            stage.show();
+
+            System.out.print("Scene switched to HelpControllerFiles.fxml\n");
+            return "Scene switched to HelpControllerFiles.fxml\n";
+        } catch(Exception e) {
+
+            // Check if scene doesn't exist
             System.out.print("Scene switch unsuccessful.\n");
             return "Scene switch unsuccessful.\n";
         }
@@ -69,7 +98,8 @@ public class HelpController {
 
     @FXML
     public void initialize() {
-        assert nextButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'HelpController.fxml'.";
-        assert returnButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'HelpController.fxml'.";
+        assert returnButton != null : "fx:id=\"returnButton\" was not injected: check your FXML file 'HelpControllerEditItems.fxml'.";
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'HelpControllerEditItems.fxml'.";
+        assert nextButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'HelpControllerEditItems.fxml'.";
     }
 }

@@ -44,9 +44,8 @@ class InventoryTrackerController {
     + toInvalidSerialNumberController(): Switches scene to InvalidSerialNumberController.fxml
     + toInvalidPriceController(): Switches scene to InvalidPriceController.fxml
     + toDuplicateItemController(): Switches scene to DuplicateItemController.fxml
-
-    + helpButtonClicked():
-
+    + helpButtonClicked(): Switches scene to HelpController
+    + toHelpController(): Switches scene to HelpController
     + fileMenuButtonClicked(): Signifies that the file menu was opened
     + loadButtonClicked(): Loads information from a chosen file to the TableView
     + removeItemButtonClicked(): Removes a selected item from the TableView
@@ -123,6 +122,68 @@ class FileManager {
     + writeToHTMLFile(File, String): Prints information to the .html file
 }
 
+class HelpController {
+    + returnButton: Button - FXML
+    + nextButton: Button - FXML
+
+    + nextButtonPressed(): Scene is switched to next help screen
+    + returnButtonPressed(): Scene is switched back to InventoryTrackerController
+    + initialize(): Initializes GUI components
+}
+
+class HelpControllerDeletingItems {
+    + returnButton: Button - FXML
+    + nextButton: Button - FXML
+    + backButton: Button - FXML
+
+    + backButtonPressed(): Scene is switched to previous help screen
+    + nextButtonPressed(): Scene is switched to next help screen
+    + returnButtonPressed(): Scene is switched back to InventoryTrackerController
+    + initialize(): Initializes GUI components
+}
+
+class HelpControllerEditItems {
+    + returnButton: Button - FXML
+    + nextButton: Button - FXML
+    + backButton: Button - FXML
+
+    + backButtonPressed(): Scene is switched to previous help screen
+    + nextButtonPressed(): Scene is switched to next help screen
+    + returnButtonPressed(): Scene is switched back to InventoryTrackerController
+    + initialize(): Initializes GUI components
+}
+
+class HelpControllerFiles {
+    + returnButton: Button - FXML
+    + nextButton: Button - FXML
+    + backButton: Button - FXML
+
+    + backButtonPressed(): Scene is switched to previous help screen
+    + nextButtonPressed(): Scene is switched to next help screen
+    + returnButtonPressed(): Scene is switched back to InventoryTrackerController
+    + initialize(): Initializes GUI components
+}
+
+class HelpControllerSearch {
+    + returnButton: Button - FXML
+    + nextButton: Button - FXML
+    + backButton: Button - FXML
+
+    + backButtonPressed(): Scene is switched to previous help screen
+    + nextButtonPressed(): Scene is switched to next help screen
+    + returnButtonPressed(): Scene is switched back to InventoryTrackerController
+    + initialize(): Initializes GUI components
+}
+
+class HelpControllerSortItems {
+    + returnButton: Button - FXML
+    + backButton: Button - FXML
+
+    + backButtonPressed(): Scene is switched to previous help screen
+    + returnButtonPressed(): Scene is switched back to InventoryTrackerController
+    + initialize(): Initializes GUI components
+}
+
 javafx.Application <|- App
 App *--> InventoryTrackerController
 App *--> InventoryItem
@@ -131,6 +192,12 @@ InventoryTrackerController -- DuplicateItemController
 InventoryTrackerController -- InvalidNameController
 InventoryTrackerController -- InvalidSerialNumberController
 InventoryTrackerController -- InvalidPriceController
+InventoryTrackerController -- HelpController
+HelpController -- HelpControllerDeletingItems
+HelpControllerDeletingItems -- HelpControllerEditItems
+HelpControllerEditItems -- HelpControllerFiles
+HelpControllerFiles -- HelpControllerSearch
+HelpControllerSearch -- HelpControllerSortItems
 InventoryTrackerController *--> FileManager
 
 @enduml

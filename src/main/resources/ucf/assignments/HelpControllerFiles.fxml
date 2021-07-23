@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ucf.assignments.HelpControllerFiles">
+   <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="-1.0" pickOnBounds="true">
+      <Image url="@../Images/BackgroundImage.jpg"/>
+   </ImageView>
+   <Text fill="#b49b8a" layoutX="96.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="HELP: Save / Load Items">
+      <font>
+         <Font name="Tahoma Bold" size="33.0"/>
+      </font>
+   </Text>
+   <Text fill="#d0b49f" layoutX="276.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4 | 6">
+      <font>
+         <Font name="Tahoma Bold" size="19.0"/>
+      </font>
+   </Text>
+   <Button fx:id="returnButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnButtonPressed"
+           style="-fx-background-color: #d0b49f;" text="X" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="22.0"/>
+      </font>
+   </Button>
+   <Button fx:id="backButton" layoutX="14.0" layoutY="357.0" mnemonicParsing="false" onAction="#backButtonPressed"
+           style="-fx-background-color: #d0b49f;" text="Back" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="16.0"/>
+      </font>
+   </Button>
+   <Button fx:id="nextButton" layoutX="526.0" layoutY="358.0" mnemonicParsing="false" onAction="#nextButtonPressed"
+           style="-fx-background-color: #d0b49f;" text="Next" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="16.0"/>
+      </font>
+   </Button>
+   <Text fill="#b49b8a" layoutX="156.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="To save items from the table:">
+      <font>
+         <Font name="Tahoma" size="22.0"/>
+      </font>
+   </Text>
+   <Text fill="#b49b8a" layoutX="169.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="To load items to the table:">
+      <font>
+         <Font name="Tahoma" size="22.0"/>
+      </font>
+   </Text>
+   <Text fill="#b49b8a" layoutX="71.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Select &quot;Save as...&quot;, name your file, and save it.">
+      <font>
+         <Font name="Tahoma" size="22.0"/>
+      </font>
+   </Text>
+   <Text fill="#b49b8a" layoutX="29.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Select &quot;Load Items&quot;, choose the file, and select &quot;Open&quot;.">
+      <font>
+         <Font name="Tahoma" size="22.0"/>
+      </font>
+   </Text>
+   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="65.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Images/FileOptions.png"/>
+   </ImageView>
+   <ImageView fitHeight="162.0" fitWidth="268.0" layoutX="276.0" layoutY="70.0" pickOnBounds="true"
+              preserveRatio="true">
+      <Image url="@../Images/FileChooser.png"/>
+   </ImageView>
+   <Text fill="#3e2a2a" layoutX="80.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🠕">
+      <font>
+         <Font name="Tahoma Bold" size="65.0"/>
+      </font>
+   </Text>
+   <Text fill="#3e2a2a" layoutX="111.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🠕">
+      <font>
+         <Font name="Tahoma Bold" size="65.0"/>
+      </font>
+   </Text>
+   <Text fill="#3e2a2a" layoutX="468.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🠕">
+      <font>
+         <Font name="Tahoma Bold" size="54.0"/>
+      </font>
+   </Text>
+</AnchorPane>

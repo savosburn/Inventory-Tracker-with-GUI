@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ucf.assignments.HelpControllerEditItems">
+   <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+      <Image url="@../Images/BackgroundImage.jpg"/>
+   </ImageView>
+   <Text fill="#b49b8a" layoutX="134.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="HELP: Editing Items">
+      <font>
+         <Font name="Tahoma Bold" size="33.0"/>
+      </font>
+   </Text>
+   <Text fill="#d0b49f" layoutX="280.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 | 6">
+      <font>
+         <Font name="System Bold" size="19.0"/>
+      </font>
+   </Text>
+   <Button fx:id="returnButton" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#returnButtonPressed"
+           style="-fx-background-color: #d0b49f;" text="X" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="22.0"/>
+      </font>
+   </Button>
+   <Button fx:id="backButton" layoutX="14.0" layoutY="357.0" mnemonicParsing="false" onAction="#backButtonPressed"
+           style="-fx-background-color: #d0b49f;" text="Back" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="16.0"/>
+      </font>
+   </Button>
+   <Button fx:id="nextButton" layoutX="526.0" layoutY="357.0" mnemonicParsing="false" onAction="#nextButtonPressed"
+           style="-fx-background-color: #d0b49f;" text="Next" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="16.0"/>
+      </font>
+   </Button>
+   <Text fill="#b49b8a" layoutX="173.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="To edit items in the table:">
+      <font>
+         <Font name="Tahoma" size="22.0"/>
+      </font>
+   </Text>
+   <Text fill="#b49b8a" layoutX="112.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text=" double click the item you wish to edit,">
+      <font>
+         <Font name="Tahoma" size="22.0"/>
+      </font>
+   </Text>
+   <Text fill="#b49b8a" layoutX="92.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="re-enter the item, and press enter to save.">
+      <font>
+         <Font name="Tahoma" size="22.0"/>
+      </font>
+   </Text>
+   <ImageView fitHeight="106.0" fitWidth="425.0" layoutX="87.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Images/EditItems.png"/>
+   </ImageView>
+   <Text fill="#3e2a2a" layoutX="229.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🠕">
+      <font>
+         <Font name="Tahoma Bold" size="65.0"/>
+      </font>
+   </Text>
+</AnchorPane>

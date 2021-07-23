@@ -253,10 +253,32 @@ public class InventoryTrackerController {
         }
     }
 
-    // TODO CREATE A HELP SCREEN?
+    // Post-conditions: Switches scene to help controller
     @FXML
-    void helpButtonClicked() {
+    public void helpButtonClicked() {
 
+        String sceneSwitch = toHelpController();
+        System.out.print(sceneSwitch);
+
+    }
+
+    // Post-conditions: Switches scene to the help controller
+    public String toHelpController() {
+        try {
+            // Switch scene to help controller
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpController.fxml")));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Help");
+            stage.show();
+
+            return "Scene switched to HelpController.fxml\n";
+        } catch(Exception e) {
+
+            // Catch if the scene was unable to switch
+            return "Scene switch unsuccessful.\n";
+        }
     }
 
     // Post-conditions: Signifies that the file menu was opened

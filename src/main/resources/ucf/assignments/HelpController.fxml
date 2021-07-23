@@ -7,47 +7,67 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ucf.assignments.HelpController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.HelpController">
    <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
-      <Image url="@../Images/BackgroundImage.jpg"/>
+      <Image url="@../Images/BackgroundImage.jpg" />
    </ImageView>
-   <Text fill="#d0b49f" layoutX="134.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP: Adding Items">
+   <Text fill="#b49b8a" layoutX="134.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP: Adding Items">
       <font>
-         <Font name="Tahoma Bold" size="33.0"/>
+         <Font name="Tahoma Bold" size="33.0" />
       </font>
    </Text>
    <Text fill="#d0b49f" layoutX="276.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1 | 6">
       <font>
-         <Font name="Tahoma Bold" size="19.0"/>
+         <Font name="Tahoma Bold" size="19.0" />
       </font>
    </Text>
-   <Button layoutX="522.0" layoutY="357.0" mnemonicParsing="false" style="-fx-background-color: #d0b49f;" text="NEXT"
-           textFill="#fef2f2">
+   <Button fx:id="nextButton" layoutX="522.0" layoutY="357.0" mnemonicParsing="false" onAction="#nextButtonPressed" style="-fx-background-color: #d0b49f;" text="NEXT" textFill="#fef2f2">
       <font>
-         <Font name="Tahoma Bold" size="16.0"/>
+         <Font name="Tahoma Bold" size="16.0" />
       </font>
    </Button>
-   <ImageView fitHeight="155.0" fitWidth="226.0" layoutX="21.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../Images/addItem.png"/>
+   <ImageView fitHeight="154.0" fitWidth="262.0" layoutX="104.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Images/addItem.png" />
    </ImageView>
-   <Text layoutX="122.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="To add an item to the inventory tracker, ">
+   <Text fill="#b49b8a" layoutX="104.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add an item to the inventory tracker:">
       <font>
-         <Font size="20.0"/>
+         <Font name="Tahoma" size="22.0" />
       </font>
    </Text>
-   <Text layoutX="198.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="Then, press &quot;ADD ITEM&quot;.">
+   <Text fill="#b49b8a" layoutX="181.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Then, press &quot;ADD ITEM&quot;.">
       <font>
-         <Font size="19.0"/>
+         <Font size="22.0" />
       </font>
    </Text>
-   <Text layoutX="99.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="fill in the item name, serial number, and price.">
+   <Text fill="#b49b8a" layoutX="75.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fill in the item name, serial number, and price.">
       <font>
-         <Font size="20.0"/>
+         <Font name="Tahoma" size="22.0" />
       </font>
    </Text>
+   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+   <Text fill="#b49b8a" layoutX="389.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←">
+      <font>
+         <Font name="Tahoma Bold" size="58.0" />
+      </font>
+   </Text>
+   <Text fill="#b49b8a" layoutX="389.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←">
+      <font>
+         <Font name="Tahoma Bold" size="58.0" />
+      </font>
+   </Text>
+   <Text fill="#b49b8a" layoutX="389.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←">
+      <font>
+         <Font name="Tahoma Bold" size="58.0" />
+      </font>
+   </Text>
+   <Text fill="#3e2a2a" layoutX="389.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←">
+      <font>
+         <Font name="Tahoma Bold" size="58.0" />
+      </font>
+   </Text>
+   <Button fx:id="returnButton" layoutX="11.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: #d0b49f;" text="X" textFill="#fef2f2">
+      <font>
+         <Font name="Tahoma Bold" size="22.0" />
+      </font>
+   </Button>
 </AnchorPane>

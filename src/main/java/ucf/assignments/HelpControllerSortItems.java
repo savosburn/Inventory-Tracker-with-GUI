@@ -14,34 +14,36 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class HelpController {
+public class HelpControllerSortItems {
 
-    @FXML private Button nextButton;
-    @FXML private Button returnButton;
-
-    // Post-condition: Scene is switched to next help screen
     @FXML
-    public String nextButtonPressed() {
+    private Button backButton;
 
+    @FXML
+    private Button returnButton;
+
+    // Post-conditions: Switch scene to previous controller
+    @FXML
+    public String backButtonPressed() {
         try {
 
             // Close current stage
-            Stage curStage = (Stage)nextButton.getScene().getWindow();
+            Stage curStage = (Stage)backButton.getScene().getWindow();
             curStage.close();
 
-            // Open next stage
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpControllerDeletingItems.fxml")));
+            // Open previous stage
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpControllerSearch.fxml")));
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Help");
             stage.show();
 
-            System.out.print("Scene switched to HelpControllerDeletingItems.fxml\n");
-            return "Scene switched to HelpControllerDeletingItems.fxml\n";
+            System.out.print("Scene switched to HelpControllerSearch.fxml\n");
+            return "Scene switched to HelpControllerSearch.fxml\n";
         } catch(Exception e) {
 
-            // Check if the scene change was unsuccessful
+            // Check if scene could not be switched
             System.out.print("Scene switch unsuccessful.\n");
             return "Scene switch unsuccessful.\n";
         }
@@ -68,8 +70,9 @@ public class HelpController {
     }
 
     @FXML
-    public void initialize() {
-        assert nextButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'HelpController.fxml'.";
-        assert returnButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'HelpController.fxml'.";
+    void initialize() {
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'HelpControllerSortItems.fxml'.";
+        assert returnButton != null : "fx:id=\"returnButton\" was not injected: check your FXML file 'HelpControllerSortItems.fxml'.";
+
     }
 }
