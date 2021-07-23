@@ -7,36 +7,38 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #d0b49f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.DuplicateItemController">
-    <children>
-      <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #D0B49F;">
-         <children>
-            <ImageView fitHeight="278.0" fitWidth="454.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../Images/BackgroundImage.jpg" />
-               </image>
-            </ImageView>
-              <Button fx:id="okButton" layoutX="184.0" layoutY="193.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="54.0" prefWidth="85.0" style="-fx-background-color: #D0B49F;" text="OK" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma Bold" size="24.0" />
-               </font>
-            </Button>
-              <Text fill="#d0b49f" layoutX="95.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DUPLICATE ITEM">
-               <font>
-                  <Font name="Tahoma Bold" size="33.0" />
-               </font>
-            </Text>
-              <Text fill="#d0b49f" layoutX="48.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This item is already in the inventory.">
-               <font>
-                  <Font name="Tahoma Bold" size="20.0" />
-               </font>
-            </Text>
-              <Text fill="#d0b49f" layoutX="85.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please add a different item.">
-               <font>
-                  <Font name="Tahoma Bold" size="21.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-    </children>
+<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #d0b49f;"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ucf.assignments.DuplicateItemController">
+    <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0"
+                style="-fx-background-color: #D0B49F;">
+        <ImageView fitHeight="278.0" fitWidth="454.0" pickOnBounds="true">
+            <Image url="@../Images/BackgroundImage.jpg"/>
+        </ImageView>
+        <Button fx:id="okButton" layoutX="184.0" layoutY="193.0" mnemonicParsing="false" onAction="#okButtonPressed"
+                prefHeight="54.0" prefWidth="85.0" style="-fx-background-color: #D0B49F;" text="OK"
+                textFill="WHITE">
+            <font>
+                <Font name="Tahoma Bold" size="24.0"/>
+            </font>
+        </Button>
+        <Text fill="#d0b49f" layoutX="95.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="DUPLICATE ITEM">
+            <font>
+                <Font name="Tahoma Bold" size="33.0"/>
+            </font>
+        </Text>
+        <Text fill="#d0b49f" layoutX="48.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="This item is already in the inventory.">
+            <font>
+                <Font name="Tahoma Bold" size="20.0"/>
+            </font>
+        </Text>
+        <Text fill="#d0b49f" layoutX="85.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Please add a different item.">
+            <font>
+                <Font name="Tahoma Bold" size="21.0"/>
+            </font>
+        </Text>
+    </AnchorPane>
 </AnchorPane>

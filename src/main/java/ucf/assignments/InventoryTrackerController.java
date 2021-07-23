@@ -134,7 +134,7 @@ public class InventoryTrackerController {
             // If the price can be parsed into a double, return true
             double priceToDouble = Double.parseDouble(price);
 
-            //System.out.print("String parse: " + priceToDouble + "\n");
+            System.out.print("String parse: " + priceToDouble + "\n");
 
             return true;
 

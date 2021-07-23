@@ -7,46 +7,49 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #d0b49f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InvalidSerialNumberController">
-    <children>
-      <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #d0b49f;">
-         <children>
-            <ImageView fitHeight="282.0" fitWidth="454.0" layoutY="-1.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../Images/BackgroundImage.jpg" />
-               </image>
-            </ImageView>
-              <Button fx:id="okButton" layoutX="188.0" layoutY="212.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="45.0" prefWidth="78.0" style="-fx-background-color: #d0b49f;" text="OK" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma Bold" size="24.0" />
-               </font>
-            </Button>
-              <Text fill="#d0b49f" layoutX="67.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please re-enter the serial number.">
-               <font>
-                  <Font name="Tahoma Bold" size="19.0" />
-               </font>
-            </Text>
-              <Text fill="#d0b49f" layoutX="23.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" must contain ONLY letters and numbers.">
-               <font>
-                  <Font name="Tahoma Bold" size="20.0" />
-               </font>
-            </Text>
-              <Text fill="#d0b49f" layoutX="202.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AND">
-               <font>
-                  <Font name="Tahoma Bold" size="22.0" />
-               </font>
-            </Text>
-              <Text fill="#d0b49f" layoutX="20.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The serial number must be 10 characters long.">
-               <font>
-                  <Font name="Tahoma Bold" size="18.0" />
-               </font>
-            </Text>
-              <Text fill="#d0b49f" layoutX="13.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID SERIAL NUMBER">
-               <font>
-                  <Font name="Tahoma Bold" size="33.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-    </children>
+<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #d0b49f;"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ucf.assignments.InvalidSerialNumberController">
+    <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0"
+                style="-fx-background-color: #d0b49f;">
+        <ImageView fitHeight="282.0" fitWidth="454.0" layoutY="-1.0" pickOnBounds="true">
+            <Image url="@../Images/BackgroundImage.jpg"/>
+        </ImageView>
+        <Button fx:id="okButton" layoutX="188.0" layoutY="212.0" mnemonicParsing="false" onAction="#okButtonPressed"
+                prefHeight="45.0" prefWidth="78.0" style="-fx-background-color: #d0b49f;" text="OK"
+                textFill="WHITE">
+            <font>
+                <Font name="Tahoma Bold" size="24.0"/>
+            </font>
+        </Button>
+        <Text fill="#d0b49f" layoutX="67.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Please re-enter the serial number.">
+            <font>
+                <Font name="Tahoma Bold" size="19.0"/>
+            </font>
+        </Text>
+        <Text fill="#d0b49f" layoutX="23.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text=" must contain ONLY letters and numbers.">
+            <font>
+                <Font name="Tahoma Bold" size="20.0"/>
+            </font>
+        </Text>
+        <Text fill="#d0b49f" layoutX="202.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AND">
+            <font>
+                <Font name="Tahoma Bold" size="22.0"/>
+            </font>
+        </Text>
+        <Text fill="#d0b49f" layoutX="20.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="The serial number must be 10 characters long.">
+            <font>
+                <Font name="Tahoma Bold" size="18.0"/>
+            </font>
+        </Text>
+        <Text fill="#d0b49f" layoutX="13.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="INVALID SERIAL NUMBER">
+            <font>
+                <Font name="Tahoma Bold" size="33.0"/>
+            </font>
+        </Text>
+    </AnchorPane>
 </AnchorPane>

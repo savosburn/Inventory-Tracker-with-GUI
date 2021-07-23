@@ -7,36 +7,38 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #d0b49f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InvalidNameController">
-    <children>
-      <AnchorPane layoutX="8.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0" style="-fx-background-color: #d0b49f;">
-         <children>
-            <ImageView fitHeight="278.0" fitWidth="454.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../Images/BackgroundImage.jpg" />
-               </image>
-            </ImageView>
-              <Button fx:id="okButton" layoutX="177.0" layoutY="204.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #d0b49f;" text="OK" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma Bold" size="21.0" />
-               </font>
-            </Button>
-              <Text fill="#d0b49f" layoutX="10.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter a name between 2 and 256 characters.">
-                  <font>
-                      <Font name="Tahoma Bold" size="17.0" />
-                  </font>
-              </Text>
-              <Text fill="#d0b49f" layoutX="107.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID NAME">
-                  <font>
-                      <Font name="Tahoma Bold" size="33.0" />
-                  </font>
-              </Text>
-              <Text fill="#d0b49f" layoutX="17.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your item name is too short or too long.">
-                  <font>
-                      <Font name="Tahoma Bold" size="21.0" />
-                  </font>
-              </Text>
-         </children>
-      </AnchorPane>
-    </children>
+<AnchorPane prefHeight="300.0" prefWidth="472.0" style="-fx-background-color: #d0b49f;"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ucf.assignments.InvalidNameController">
+    <AnchorPane layoutX="8.0" layoutY="11.0" prefHeight="278.0" prefWidth="454.0"
+                style="-fx-background-color: #d0b49f;">
+        <ImageView fitHeight="278.0" fitWidth="454.0" pickOnBounds="true">
+            <Image url="@../Images/BackgroundImage.jpg"/>
+        </ImageView>
+        <Button fx:id="okButton" layoutX="177.0" layoutY="204.0" mnemonicParsing="false" onAction="#okButtonPressed"
+                prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #d0b49f;" text="OK"
+                textFill="WHITE">
+            <font>
+                <Font name="Tahoma Bold" size="21.0"/>
+            </font>
+        </Button>
+        <Text fill="#d0b49f" layoutX="10.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Please enter a name between 2 and 256 characters.">
+            <font>
+                <Font name="Tahoma Bold" size="17.0"/>
+            </font>
+        </Text>
+        <Text fill="#d0b49f" layoutX="107.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="INVALID NAME">
+            <font>
+                <Font name="Tahoma Bold" size="33.0"/>
+            </font>
+        </Text>
+        <Text fill="#d0b49f" layoutX="17.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Your item name is too short or too long.">
+            <font>
+                <Font name="Tahoma Bold" size="21.0"/>
+            </font>
+        </Text>
+    </AnchorPane>
 </AnchorPane>

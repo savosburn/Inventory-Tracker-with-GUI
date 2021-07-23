@@ -13,83 +13,104 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="828.0" style="-fx-background-color: #D0B49F;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryTrackerController">
-    <children>
-        <AnchorPane prefHeight="516.0" prefWidth="270.0" style="-fx-background-color: #fef2f2;">
-            <children>
-            <ImageView fitHeight="510.0" fitWidth="312.0" layoutX="-1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/BackgroundImage.jpg" />
-               </image>
-            </ImageView>
-                <Button fx:id="addItemButton" layoutX="5.0" layoutY="471.0" mnemonicParsing="false" onAction="#addItemButtonClicked" prefHeight="30.0" prefWidth="279.0" style="-fx-background-color: #D0B49F;" text="+ ADD ITEM" textFill="WHITE">
-                    <font>
-                        <Font name="Tahoma Bold" size="14.0" />
-                    </font>
-                </Button>
-                <Button fx:id="removeItemButton" layoutX="6.0" layoutY="80.0" mnemonicParsing="false" onAction="#removeItemButtonClicked" prefHeight="30.0" prefWidth="279.0" style="-fx-background-color: #D0B49F;" text="🗑 REMOVE ITEM" textFill="WHITE">
-                    <font>
-                        <Font name="Tahoma Bold" size="15.0" />
-                    </font>
-                </Button>
-                <TextField fx:id="itemPriceTextField" alignment="CENTER" layoutX="5.0" layoutY="435.0" prefHeight="26.0" prefWidth="279.0" promptText="Enter price...">
-               <font>
-                  <Font name="Tahoma" size="13.0" />
-               </font></TextField>
-                <TextField fx:id="itemSerialNumberTextField" alignment="CENTER" layoutX="5.0" layoutY="399.0" prefHeight="26.0" prefWidth="279.0" promptText="Enter serial number...">
-               <font>
-                  <Font name="Tahoma" size="13.0" />
-               </font></TextField>
-                <TextField fx:id="itemNameTextField" alignment="CENTER" layoutX="6.0" layoutY="365.0" prefHeight="26.0" prefWidth="279.0" promptText="Enter item name...">
-               <font>
-                  <Font name="Tahoma" size="13.0" />
-               </font></TextField>
-                <AnchorPane layoutX="-1.0" prefHeight="66.0" prefWidth="828.0" style="-fx-background-color: #D0B49F;">
-                    <children>
-                        <MenuButton fx:id="fileMenuButton" layoutX="682.0" layoutY="8.0" mnemonicParsing="false" onAction="#fileMenuButtonClicked" prefHeight="50.0" prefWidth="131.0" style="-fx-background-color: #fef2f2;" text="File Options" textFill="#d0b49f">
-                            <items>
-                                <MenuItem fx:id="saveAsButton" mnemonicParsing="false" onAction="#saveAsButtonClicked" text="🖫 Save as..." />
-                                <MenuItem fx:id="loadButton" mnemonicParsing="false" onAction="#loadButtonClicked" text="Load..." />
-                            </items>
-                            <font>
-                                <Font name="Tahoma Bold" size="14.0" />
-                            </font>
-                        </MenuButton>
-                    <Text fill="#fef2f2" layoutX="80.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVENTORY TRACKER" wrappingWidth="568.0419311523438">
-                        <font>
-                            <Font name="Tahoma" size="49.0" />
-                        </font>
-                    </Text>
-                    <Button fx:id="helpButton" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#helpButtonClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 5em; -fx-min-width: 3px; -fx-min-height: 3px; -fx-background-color: #fef2f2;" text="?" textFill="#d0b49f">
-                        <font>
-                            <Font name="System Bold" size="26.0" />
-                        </font>
-                        <cursor>
-                            <Cursor fx:constant="HAND" />
-                        </cursor>
-                    </Button>
-                    </children>
-                </AnchorPane>
-              <TableView fx:id="inventoryTrackerTable" editable="true" layoutX="294.0" layoutY="119.0" prefHeight="389.0" prefWidth="526.0" style="-fx-background-color: #D0B49F;">
-                  <columns>
-                      <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="108.79996337890623" style="-fx-background-color: #D0B49F;" text="Price" />
-                      <TableColumn fx:id="serialNumberColumn" prefWidth="190.4000244140625" style="-fx-background-color:  #D0B49F;" text="Serial Number" />
-                      <TableColumn fx:id="itemColumn" prefWidth="224.800048828125" style="-fx-background-color:  #D0B49F;" text="Item" />
-                  </columns>
-                  <cursor>
-                      <Cursor fx:constant="HAND" />
-                  </cursor>
-              </TableView>
-              <TextField fx:id="searchTextField" layoutX="294.0" layoutY="80.0" prefHeight="30.0" prefWidth="526.0" promptText="⌕ Search for item name, serial number, or price...">
-               <font>
-                  <Font name="Tahoma" size="13.0" />
-               </font></TextField>
-            <Button fx:id="clearInventoryButton" layoutX="6.0" layoutY="119.0" mnemonicParsing="false" onAction="#clearInventoryButtonClicked" prefHeight="30.0" prefWidth="279.0" style="-fx-background-color: #D0B49F;" text="CLEAR INVENTORY" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma Bold" size="14.0" />
-               </font>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0"
+            prefWidth="828.0" style="-fx-background-color: #D0B49F;" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryTrackerController">
+    <AnchorPane prefHeight="516.0" prefWidth="270.0" style="-fx-background-color: #fef2f2;">
+        <ImageView fitHeight="510.0" fitWidth="312.0" layoutX="-1.0" layoutY="5.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <Image url="@../Images/BackgroundImage.jpg"/>
+        </ImageView>
+        <Button fx:id="addItemButton" layoutX="5.0" layoutY="471.0" mnemonicParsing="false"
+                onAction="#addItemButtonClicked" prefHeight="30.0" prefWidth="279.0"
+                style="-fx-background-color: #D0B49F;" text="+ ADD ITEM" textFill="WHITE">
+            <font>
+                <Font name="Tahoma Bold" size="14.0"/>
+            </font>
+        </Button>
+        <Button fx:id="removeItemButton" layoutX="6.0" layoutY="80.0" mnemonicParsing="false"
+                onAction="#removeItemButtonClicked" prefHeight="30.0" prefWidth="279.0"
+                style="-fx-background-color: #D0B49F;" text="🗑 REMOVE ITEM" textFill="WHITE">
+            <font>
+                <Font name="Tahoma Bold" size="15.0"/>
+            </font>
+        </Button>
+        <TextField fx:id="itemPriceTextField" alignment="CENTER" layoutX="5.0" layoutY="435.0" prefHeight="26.0"
+                   prefWidth="279.0" promptText="Enter price...">
+            <font>
+                <Font name="Tahoma" size="13.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="itemSerialNumberTextField" alignment="CENTER" layoutX="5.0" layoutY="399.0"
+                   prefHeight="26.0" prefWidth="279.0" promptText="Enter serial number...">
+            <font>
+                <Font name="Tahoma" size="13.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="itemNameTextField" alignment="CENTER" layoutX="6.0" layoutY="365.0" prefHeight="26.0"
+                   prefWidth="279.0" promptText="Enter item name...">
+            <font>
+                <Font name="Tahoma" size="13.0"/>
+            </font>
+        </TextField>
+        <AnchorPane layoutX="-1.0" prefHeight="66.0" prefWidth="828.0" style="-fx-background-color: #D0B49F;">
+            <MenuButton fx:id="fileMenuButton" layoutX="682.0" layoutY="8.0" mnemonicParsing="false"
+                        onAction="#fileMenuButtonClicked" prefHeight="50.0" prefWidth="131.0"
+                        style="-fx-background-color: #fef2f2;" text="File Options" textFill="#d0b49f">
+                <items>
+                    <MenuItem fx:id="saveAsButton" mnemonicParsing="false" onAction="#saveAsButtonClicked"
+                              text="🖫 Save as..."/>
+                    <MenuItem fx:id="loadButton" mnemonicParsing="false" onAction="#loadButtonClicked"
+                              text="Load..."/>
+                </items>
+                <font>
+                    <Font name="Tahoma Bold" size="14.0"/>
+                </font>
+            </MenuButton>
+            <Text fill="#fef2f2" layoutX="80.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                  text="INVENTORY TRACKER" wrappingWidth="568.0419311523438">
+                <font>
+                    <Font name="Tahoma" size="49.0"/>
+                </font>
+            </Text>
+            <Button fx:id="helpButton" layoutX="14.0" layoutY="8.0" mnemonicParsing="false"
+                    onAction="#helpButtonClicked" prefHeight="50.0" prefWidth="50.0"
+                    style="-fx-background-radius: 5em; -fx-min-width: 3px; -fx-min-height: 3px; -fx-background-color: #fef2f2;"
+                    text="?" textFill="#d0b49f">
+                <font>
+                    <Font name="System Bold" size="26.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
             </Button>
-            </children>
         </AnchorPane>
-    </children>
+        <TableView fx:id="inventoryTrackerTable" editable="true" layoutX="294.0" layoutY="119.0" prefHeight="389.0"
+                   prefWidth="526.0" style="-fx-background-color: #D0B49F;">
+            <columns>
+                <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="108.79996337890623"
+                             style="-fx-background-color: #D0B49F;" text="Price"/>
+                <TableColumn fx:id="serialNumberColumn" prefWidth="190.4000244140625"
+                             style="-fx-background-color:  #D0B49F;" text="Serial Number"/>
+                <TableColumn fx:id="itemColumn" prefWidth="224.800048828125" style="-fx-background-color:  #D0B49F;"
+                             text="Item"/>
+            </columns>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </TableView>
+        <TextField fx:id="searchTextField" layoutX="294.0" layoutY="80.0" prefHeight="30.0" prefWidth="526.0"
+                   promptText="⌕ Search for item name, serial number, or price...">
+            <font>
+                <Font name="Tahoma" size="13.0"/>
+            </font>
+        </TextField>
+        <Button fx:id="clearInventoryButton" layoutX="6.0" layoutY="119.0" mnemonicParsing="false"
+                onAction="#clearInventoryButtonClicked" prefHeight="30.0" prefWidth="279.0"
+                style="-fx-background-color: #D0B49F;" text="CLEAR INVENTORY" textFill="WHITE">
+            <font>
+                <Font name="Tahoma Bold" size="14.0"/>
+            </font>
+        </Button>
+    </AnchorPane>
 </AnchorPane>

@@ -287,6 +287,7 @@ public class FileManager {
     // Post-conditions: Creates the body information to save to a .html file
     public String generateBody(List<InventoryItem> items) {
 
+        // Create a string
         StringBuilder bodyString = new StringBuilder();
         bodyString.append("\t<body>\n").append("\t<table>\n");
 
