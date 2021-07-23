@@ -7,51 +7,46 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ucf.assignments.HelpControllerSortItems">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.HelpControllerSortItems">
    <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
-      <Image url="@../Images/BackgroundImage.jpg"/>
+      <Image url="@../Images/BackgroundImage.jpg" />
    </ImageView>
    <Text fill="#b49b8a" layoutX="158.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP: Sort Items">
       <font>
-         <Font name="Tahoma Bold" size="33.0"/>
+         <Font name="Tahoma Bold" size="33.0" />
       </font>
    </Text>
-   <Button fx:id="backButton" layoutX="14.0" layoutY="352.0" mnemonicParsing="false" onAction="#backButtonPressed"
-           style="-fx-background-color: #d0b49f;" text="Back" textFill="#fef2f2">
+   <Button fx:id="backButton" layoutX="14.0" layoutY="352.0" mnemonicParsing="false" onAction="#backButtonPressed" style="-fx-background-color: #d0b49f;" text="Back" textFill="#fef2f2">
       <font>
-         <Font name="Tahoma Bold" size="16.0"/>
+         <Font name="Tahoma Bold" size="16.0" />
       </font>
    </Button>
    <Text fill="#d0b49f" layoutX="276.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6 | 6">
       <font>
-         <Font name="Tahoma Bold" size="19.0"/>
+         <Font name="Tahoma Bold" size="19.0" />
       </font>
    </Text>
-   <Button fx:id="returnButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnButtonPressed"
-           style="-fx-background-color: #d0b49f;" text="X" textFill="#fef2f2">
+   <Button fx:id="returnButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnButtonPressed" style="-fx-background-color: #d0b49f;" text="X" textFill="#fef2f2">
       <font>
-         <Font name="Tahoma Bold" size="22.0"/>
+         <Font name="Tahoma Bold" size="22.0" />
       </font>
    </Button>
-   <Text fill="#b49b8a" layoutX="174.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="To sort items in the table:">
+   <Text fill="#b49b8a" layoutX="174.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To sort items in the table:">
       <font>
-         <Font name="Tahoma" size="22.0"/>
+         <Font name="Tahoma" size="22.0" />
       </font>
    </Text>
-   <Text fill="#b49b8a" layoutX="22.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="Select the header of the column that you want to sort by.">
+   <Text fill="#b49b8a" layoutX="22.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the header of the column that you want to sort by.">
       <font>
-         <Font name="Tahoma" size="22.0"/>
+         <Font name="Tahoma" size="22.0" />
       </font>
    </Text>
    <ImageView fitHeight="105.0" fitWidth="559.0" layoutX="36.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../Images/sortItems.png"/>
+      <Image url="@../Images/sortItems.png" />
    </ImageView>
    <Text fill="#3e2a2a" layoutX="288.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🠕">
       <font>
-         <Font name="Tahoma Bold" size="96.0"/>
+         <Font name="Tahoma Bold" size="96.0" />
       </font>
    </Text>
 </AnchorPane>
