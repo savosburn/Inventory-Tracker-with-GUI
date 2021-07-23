@@ -273,7 +273,6 @@ public class InventoryTrackerController {
         System.out.print("Load button clicked.\n");
 
         // Open file chooser, set title, and set extensions
-        // TODO: FINISH OR REMOVE JSON
         Window stage = fileMenuButton.getScene().getWindow();
         fileChooser.setTitle("Load Inventory");
         fileChooser.getExtensionFilters().addAll(
@@ -510,6 +509,7 @@ public class InventoryTrackerController {
 
         // Set new table placeholder and update the table
         inventoryTrackerTable.setPlaceholder(new Label("Nothing in inventory."));
+
         inventoryTrackerTable.setItems(inventoryItems);
 
         // Set itemColumn to editable text fields
