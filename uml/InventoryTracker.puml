@@ -113,8 +113,8 @@ class FileManager {
     + parseStrings(String): Splits the strings from a .txt at the tabs (\t)
     + loadHTML(File): Adds the strings from a .html to an ArrayList
     + startScanner(Scanner): Makes the scanner start at a certain point in the .html document
-    + parseHTMLStrings(String): Parses HTML strings at "&emsp;"
-    + addToObservableListHTML(ArrayList<String>): Parses the strings in the ArrayList and returns them as an ObservableList for a .html document
+    + parseHTMLStrings(String): Returns the data inside the HTML table
+    + addToObservableListHTML(ArrayList<String>): Returns an ObservableList created from an HTML file
     + observableToList(ObservableList<InventoryItem>): Converts observable list to a regular list
     + saveToTXT(File, List<InventoryItem>): Saves items to a .txt files
     + generateHeader(File, List<InventoryItem>): Generates the contents to save to a .html file

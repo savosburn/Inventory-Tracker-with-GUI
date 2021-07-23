@@ -295,9 +295,15 @@ class FileManagerTest {
         ArrayList<String> actual;
 
         // Fill in the expected information
-        expected.add("Hammers&emsp;H45O41K69J&emsp;$34.17&emsp;<br>");
-        expected.add("Saws&emsp;S14YHG521I&emsp;$15.16&emsp;<br>");
-        expected.add("Monkey Wrenches&emsp;MW1515F8G4&emsp;$24.10&emsp;<br>");
+        expected.add("  <td>$34.17</td>");
+        expected.add("  <td>H45O41K69J</td>");
+        expected.add("  <td>Hammers</td>");
+        expected.add("  <td>$15.16</td>");
+        expected.add("  <td>S14YHG521I</td>");
+        expected.add("  <td>Saws</td>");
+        expected.add("  <td>$24.10</td>");
+        expected.add("  <td>MW1515F8G4</td>");
+        expected.add("  <td>Monkey Wrenches</td>");
 
         // Get the actual information
         actual = fileManager.loadHTML(file);
@@ -308,6 +314,7 @@ class FileManagerTest {
         }
     }
 
+
     @Test
     public void parseHTMLStrings() {
 
@@ -315,15 +322,14 @@ class FileManagerTest {
         FileManager fileManager = new FileManager();
 
         // Get the string and the expected string, then parse
-        String parseString = "test&emsp;testOne&emsp;testTwo&emsp;";
+        String parseString = "  <td>Monkey Wrenches</td>";
+        String expected = "Monkey Wrenches";
 
-        String[] expected = {"test", "testOne", "testTwo"};
-        String[] actual = fileManager.parseHTMLStrings(parseString);
+        String actual = fileManager.parseHTMLStrings(parseString);
 
         // Check that the expected string is equal to the parsed string
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertEquals(expected, actual);
+
     }
 
     @Test
@@ -337,23 +343,29 @@ class FileManagerTest {
 
         // Add information to the lists
         InventoryItem itemOne = new InventoryItem();
-        itemOne.setItemName("apples");
-        itemOne.setItemPrice("$3.00");
-        itemOne.setItemSerialNumber("0123456789");
+        itemOne.setItemName("Hammers");
+        itemOne.setItemPrice("$34.17");
+        itemOne.setItemSerialNumber("H45O41K69J");
 
         InventoryItem itemTwo = new InventoryItem();
-        itemTwo.setItemName("pears");
-        itemTwo.setItemPrice("$4.00");
-        itemTwo.setItemSerialNumber("01234ASDFG");
+        itemTwo.setItemName("Saws");
+        itemTwo.setItemPrice("$15.16");
+        itemTwo.setItemSerialNumber("S14YHG521I");
 
         InventoryItem itemThree = new InventoryItem();
-        itemThree.setItemName("grapes");
-        itemThree.setItemPrice("$1.00");
-        itemThree.setItemSerialNumber("0000000000");
+        itemThree.setItemName("Monkey Wrenches");
+        itemThree.setItemPrice("$24.10");
+        itemThree.setItemSerialNumber("MW1515F8G4");
 
-        items.add("apples&emsp;0123456789&emsp;$3.00");
-        items.add("pears&emsp;01234ASDFG&emsp;$4.00");
-        items.add("grapes&emsp;0000000000&emsp;$1.00");
+        items.add("  <td>$34.17</td>");
+        items.add("  <td>H45O41K69J</td>");
+        items.add("  <td>Hammers</td>");
+        items.add("  <td>$15.16</td>");
+        items.add("  <td>S14YHG521I</td>");
+        items.add("  <td>Saws</td>");
+        items.add("  <td>$24.10</td>");
+        items.add("  <td>MW1515F8G4</td>");
+        items.add("  <td>Monkey Wrenches</td>");
 
         // Get the expected results
         expected.addAll(itemOne, itemTwo, itemThree);
@@ -461,19 +473,19 @@ class FileManagerTest {
 
         // Add information to the List
         InventoryItem itemOne = new InventoryItem();
-        itemOne.setItemName("apples");
-        itemOne.setItemPrice("$3.00");
-        itemOne.setItemSerialNumber("0123456789");
+        itemOne.setItemName("Hammers");
+        itemOne.setItemPrice("$34.17");
+        itemOne.setItemSerialNumber("H45O41K69J");
 
         InventoryItem itemTwo = new InventoryItem();
-        itemTwo.setItemName("pears");
-        itemTwo.setItemPrice("$4.00");
-        itemTwo.setItemSerialNumber("01234ASDFG");
+        itemTwo.setItemName("Saws");
+        itemTwo.setItemPrice("$15.16");
+        itemTwo.setItemSerialNumber("S14YHG521I");
 
         InventoryItem itemThree = new InventoryItem();
-        itemThree.setItemName("grapes");
-        itemThree.setItemPrice("$1.00");
-        itemThree.setItemSerialNumber("0000000000");
+        itemThree.setItemName("Monkey Wrenches");
+        itemThree.setItemPrice("$24.10");
+        itemThree.setItemSerialNumber("MW1515F8G4");
 
         inventoryItems.add(itemOne);
         inventoryItems.add(itemTwo);
@@ -488,10 +500,29 @@ class FileManagerTest {
                 \t\t\tInventory Tracker
                 \t\t</title>
                 \t</head>
-                \t<body>
-                apples&emsp;0123456789&emsp;$3.00&emsp;<br>
-                pears&emsp;01234ASDFG&emsp;$4.00&emsp;<br>
-                grapes&emsp;0000000000&emsp;$1.00&emsp;<br>
+                \t<body>    
+                \t<table>           
+                <tr>
+                  <th>Price</th>
+                  <th>Serial Number</th>
+                  <th>Item</th>
+                </tr>
+                <tr>
+                  <td>$34.17</td>
+                  <td>H45O41K69J</td>
+                  <td>Hammers</td>
+                </tr>
+                <tr>
+                  <td>$15.16</td>
+                  <td>S14YHG521I</td>
+                  <td>Saws</td>
+                </tr>
+                <tr>
+                  <td>$24.10</td>
+                  <td>MW1515F8G4</td>
+                  <td>Monkey Wrenches</td>
+                </tr>
+                \t</table>
                 \t</body>
                 </html>""";
 
@@ -533,10 +564,29 @@ class FileManagerTest {
 
         // Get the expected String
         String expected = """
-                \t<body>
-                apples&emsp;0123456789&emsp;$3.00&emsp;<br>
-                pears&emsp;01234ASDFG&emsp;$4.00&emsp;<br>
-                grapes&emsp;0000000000&emsp;$1.00&emsp;<br>
+                \t<body>       
+                \t<table>           
+                <tr>
+                  <th>Price</th>
+                  <th>Serial Number</th>
+                  <th>Item</th>
+                </tr>
+                <tr>
+                  <td>$34.17</td>
+                  <td>H45O41K69J</td>
+                  <td>Hammers</td>
+                </tr>
+                <tr>
+                  <td>$15.16</td>
+                  <td>S14YHG521I</td>
+                  <td>Saws</td>
+                </tr>
+                <tr>
+                  <td>$24.10</td>
+                  <td>MW1515F8G4</td>
+                  <td>Monkey Wrenches</td>
+                </tr>
+                \t</table>
                 \t</body>
                 """;
 
@@ -544,19 +594,19 @@ class FileManagerTest {
 
         // Add information to the List
         InventoryItem itemOne = new InventoryItem();
-        itemOne.setItemName("apples");
-        itemOne.setItemPrice("$3.00");
-        itemOne.setItemSerialNumber("0123456789");
+        itemOne.setItemName("Hammers");
+        itemOne.setItemPrice("$34.17");
+        itemOne.setItemSerialNumber("H45O41K69J");
 
         InventoryItem itemTwo = new InventoryItem();
-        itemTwo.setItemName("pears");
-        itemTwo.setItemPrice("$4.00");
-        itemTwo.setItemSerialNumber("01234ASDFG");
+        itemTwo.setItemName("Saws");
+        itemTwo.setItemPrice("$15.16");
+        itemTwo.setItemSerialNumber("S14YHG521I");
 
         InventoryItem itemThree = new InventoryItem();
-        itemThree.setItemName("grapes");
-        itemThree.setItemPrice("$1.00");
-        itemThree.setItemSerialNumber("0000000000");
+        itemThree.setItemName("Monkey Wrenches");
+        itemThree.setItemPrice("$24.10");
+        itemThree.setItemSerialNumber("MW1515F8G4");
 
         inventoryItems.add(itemOne);
         inventoryItems.add(itemTwo);
@@ -585,10 +635,29 @@ class FileManagerTest {
                 \t\t\tInventory Tracker
                 \t\t</title>
                 \t</head>
-                \t<body>
-                apples&emsp;0123456789&emsp;$3.00&emsp;<br>
-                pears&emsp;01234ASDFG&emsp;$4.00&emsp;<br>
-                grapes&emsp;0000000000&emsp;$1.00&emsp;<br>
+                \t<body>\040\040\040\040
+                \t<table>\040\040\040\040\040\040\040\040\040\040\040
+                <tr>
+                  <th>Price</th>
+                  <th>Serial Number</th>
+                  <th>Item</th>
+                </tr>
+                <tr>
+                  <td>$34.17</td>
+                  <td>H45O41K69J</td>
+                  <td>Hammers</td>
+                </tr>
+                <tr>
+                  <td>$15.16</td>
+                  <td>S14YHG521I</td>
+                  <td>Saws</td>
+                </tr>
+                <tr>
+                  <td>$24.10</td>
+                  <td>MW1515F8G4</td>
+                  <td>Monkey Wrenches</td>
+                </tr>
+                \t</table>
                 \t</body>
                 </html>""";
 
@@ -601,10 +670,29 @@ class FileManagerTest {
                 \t\t\tInventory Tracker
                 \t\t</title>
                 \t</head>
-                \t<body>
-                apples&emsp;0123456789&emsp;$3.00&emsp;<br>
-                pears&emsp;01234ASDFG&emsp;$4.00&emsp;<br>
-                grapes&emsp;0000000000&emsp;$1.00&emsp;<br>
+                \t<body>\040\040\040\040
+                \t<table>\040\040\040\040\040\040\040\040\040\040\040
+                <tr>
+                  <th>Price</th>
+                  <th>Serial Number</th>
+                  <th>Item</th>
+                </tr>
+                <tr>
+                  <td>$34.17</td>
+                  <td>H45O41K69J</td>
+                  <td>Hammers</td>
+                </tr>
+                <tr>
+                  <td>$15.16</td>
+                  <td>S14YHG521I</td>
+                  <td>Saws</td>
+                </tr>
+                <tr>
+                  <td>$24.10</td>
+                  <td>MW1515F8G4</td>
+                  <td>Monkey Wrenches</td>
+                </tr>
+                \t</table>
                 \t</body>
                 </html>""";
 

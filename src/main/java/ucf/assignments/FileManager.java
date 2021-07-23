@@ -143,7 +143,7 @@ public class FileManager {
                 String nextLine = scanner.nextLine();
 
                 // If it's not the end of the body
-                if (!nextLine.equals("\t</body>") && !nextLine.equals("</html>")) {
+                if (nextLine.contains("<td>")) {
                     // Add the scanned in line to the ArrayList
                     inventory.add(nextLine);
                 }
@@ -158,40 +158,65 @@ public class FileManager {
         }
     }
 
+    // Post-conditions: Returns an ObservableList created from an HTML file
+    public ObservableList<InventoryItem> addToObservableListHTML(ArrayList<String> items) {
+
+        // Create objects
+        ObservableList<InventoryItem> tempList = FXCollections.observableArrayList();
+        InventoryItem item = new InventoryItem();
+
+        // Loop through everything in the ArrayList
+        for (int i = 0; i < items.size(); i++) {
+            int modThree = i % 3;
+
+            // Parse the strings
+            String parsedString = parseHTMLStrings(items.get(i));
+
+            // After every three strings, create a new item
+            if (i == 0 || modThree == 0) {
+                item = new InventoryItem();
+            }
+
+            // Add strings to the item object according to their placement
+            if (i < 3) {
+                switch (i) {
+                    case 0 -> item.setItemPrice(parsedString);
+                    case 1 -> item.setItemSerialNumber(parsedString);
+                    case 2 -> item.setItemName(parsedString);
+                }
+            }
+
+            else {
+                switch (modThree) {
+                    case 0 -> item.setItemPrice(parsedString);
+                    case 1 -> item.setItemSerialNumber(parsedString);
+                    case 2 -> item.setItemName(parsedString);
+                }
+            }
+
+            // After adding the last string of each object, add the object to an ObservableList
+            if (i == 0 || modThree == 0) {
+                tempList.add(item);
+            }
+
+        }
+
+        // Return the ObservableList
+        return tempList;
+    }
+
     // Post-conditions: Makes the scanner start at a certain point in the .html document
     private void startScanner(Scanner scanner) {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 14; i++) {
             if (scanner.hasNextLine()){
                 scanner.nextLine();
             }
         }
     }
 
-    // Post-conditions: Parses HTML strings at "&emsp;"
-    public String[] parseHTMLStrings(String item) {
-        return item.split("&emsp;");
-    }
-
-    // Post-conditions: Parses the strings in the ArrayList and returns them as an ObservableList for a .html document
-    public ObservableList<InventoryItem> addToObservableListHTML(ArrayList<String> items) {
-        ObservableList<InventoryItem> tempList = FXCollections.observableArrayList();
-
-        // Iterate through every object string
-        for (String item : items) {
-
-            // Parse each string
-            String[] parsedString = parseHTMLStrings(item);
-
-            // Use the parsed string to fill in the fields of the InventoryItem and then add to the ObservableList
-            InventoryItem inventory = new InventoryItem();
-            inventory.setItemName(parsedString[0]);
-            inventory.setItemSerialNumber(parsedString[1].toUpperCase());
-            inventory.setItemPrice(parsedString[2]);
-
-            tempList.add(inventory);
-        }
-
-        return tempList;
+    // Post-conditions: Returns the data inside the HTML table
+    public String parseHTMLStrings(String item) {
+        return item.substring(6, (item.length() - 5));
     }
 
     // Post-conditions: Converts observable list to a regular list
@@ -263,17 +288,29 @@ public class FileManager {
     public String generateBody(List<InventoryItem> items) {
 
         StringBuilder bodyString = new StringBuilder();
-        bodyString.append("\t<body>\n");
+        bodyString.append("\t<body>\n").append("\t<table>\n");
+
+        bodyString.append("""
+                <tr>
+                  <th>Price</th>
+                  <th>Serial Number</th>
+                  <th>Item</th>
+                </tr>
+                """);
 
         // For each item in the list
         for (InventoryItem item : items) {
             // Add the information to a string
-            bodyString.append(item.itemName).append("&emsp;");
-            bodyString.append(item.itemSerialNumber.toUpperCase()).append("&emsp;");
-            bodyString.append(item.itemPrice).append("&emsp;").append("<br>\n");
+            bodyString.append(String.format("""
+                    <tr>
+                      <td>%s</td>
+                      <td>%s</td>
+                      <td>%s</td>
+                    </tr>
+                    """, item.itemPrice, item.itemSerialNumber, item.itemName));
         }
-        
-        bodyString.append("\t</body>\n");
+
+        bodyString.append("\t</table>\n").append("\t</body>\n");
 
         return bodyString.toString();
     }
