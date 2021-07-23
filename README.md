@@ -15,6 +15,10 @@ To remove all items from the inventory tracker, simply select "CLEAR INVENTORY".
 To edit an item, double click the item you wish to edit, and re-enter the information.\
 Press enter to save changes.
 
+### Search for Items
+To search for an item, enter text into the search bar.\
+All items that contain your search will appear in the table view.
+
 ### Sorting Items
 To sort items in the table, select the header of the column that you wish to sort by.\
 For example: Select "Serial Number" to sort by serial number.\
